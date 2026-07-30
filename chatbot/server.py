@@ -14,7 +14,7 @@ normalized, and scored, so there's no reason to redo that work per request.
 
 Setup:
     pip install -r chatbot/requirements.txt
-    cp chatbot/.env.example chatbot/.env   # then paste your key into chatbot/.env
+    echo 'GROQ_API_KEY=your_key_here' > chatbot/.env   # free key from console.groq.com
     python3 chatbot/server.py
 """
 
