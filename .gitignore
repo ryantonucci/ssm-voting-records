@@ -1,0 +1,22 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Scraped/derived data (regenerate via 1_download_minutes.py, 2_parse_minutes.py,
+# create_database.py, import_json.py, export_dashboard_data.py)
+pdfs/
+parsed/
+dbs/
+manifest.json
+votes_rollup.csv
+web/public/data.json
+
+# Node / Vite
+web/node_modules/
+web/dist/
+
+# OS
+.DS_Store

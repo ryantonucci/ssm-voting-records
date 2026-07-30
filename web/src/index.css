@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: oklch(0.98 0 0);
+  font-family: Helvetica, Arial, sans-serif;
+  color: oklch(0.15 0 0);
+}
+
+::selection {
+  background: oklch(0.15 0 0);
+  color: oklch(0.98 0 0);
+}
+
+a {
+  color: inherit;
+}
