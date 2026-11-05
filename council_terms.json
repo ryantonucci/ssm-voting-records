@@ -1,0 +1,37 @@
+{
+  "_comment": "One entry per council term, newest first. Names must match how the minutes write them (\"Councillor X. Surname\") so votes line up. After an election, add the new term at the top. Each term runs from its start date until the next term's start.",
+  "terms": [
+    {
+      "term": "2026–2030",
+      "start": "2026-11-16",
+      "councillors": [
+        { "ward": 1, "name": "Councillor B. Derochie" },
+        { "ward": 1, "name": "Councillor L. Costa" },
+        { "ward": 2, "name": "Councillor L. Dufour" },
+        { "ward": 2, "name": "Councillor S. Pagnucco" },
+        { "ward": 3, "name": "Councillor G. Trembinski" },
+        { "ward": 3, "name": "Councillor L. Moreno" },
+        { "ward": 4, "name": "Councillor M. Bruni" },
+        { "ward": 4, "name": "Councillor S. Kinach" },
+        { "ward": 5, "name": "Councillor C. Gardi" },
+        { "ward": 5, "name": "Councillor M. Scott" }
+      ]
+    },
+    {
+      "term": "2022–2026",
+      "start": "2022-11-15",
+      "councillors": [
+        { "ward": 1, "name": "Councillor S. Spina" },
+        { "ward": 1, "name": "Councillor S. Hollingsworth" },
+        { "ward": 2, "name": "Councillor L. Dufour" },
+        { "ward": 2, "name": "Councillor L. Vezeau-Allen" },
+        { "ward": 3, "name": "Councillor A. Caputo" },
+        { "ward": 3, "name": "Councillor R. Zagordo" },
+        { "ward": 4, "name": "Councillor M. Bruni" },
+        { "ward": 4, "name": "Councillor S. Kinach" },
+        { "ward": 5, "name": "Councillor C. Gardi" },
+        { "ward": 5, "name": "Councillor M. Scott" }
+      ]
+    }
+  ]
+}

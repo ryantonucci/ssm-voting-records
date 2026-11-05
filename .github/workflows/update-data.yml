@@ -1,0 +1,58 @@
+name: Update council data
+
+# Checks the city's site for newly posted minutes every morning, rebuilds
+# web/public/data.json, and commits it if anything changed. That push is what
+# triggers a Vercel redeploy.
+on:
+  schedule:
+    - cron: "0 11 * * *" # 06:00 Eastern (07:00 during DST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # pdfs/ is gitignored (~600 MB), so keep it between runs in the Actions
+      # cache; the download script then only fetches what's new. If the cache
+      # has been evicted, the first run just re-downloads everything.
+      - uses: actions/cache/restore@v4
+        with:
+          path: pdfs
+          key: pdfs-${{ github.run_id }}
+          restore-keys: pdfs-
+
+      - run: ./update_data.sh
+
+      - uses: actions/cache/save@v4
+        with:
+          path: pdfs
+          key: pdfs-${{ hashFiles('pdfs/**') }}
+
+      - name: Commit data.json if it changed
+        run: |
+          if git diff --quiet -- web/public/data.json; then
+            echo "No new data."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add web/public/data.json
+          git commit -m "Update council data ($(date -u +%Y-%m-%d))"
+          git push

@@ -19,3 +19,5 @@ web/dist/
 
 # OS
 .DS_Store
+.vercel
+.env*

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, Link, useParams, useNavigate } from 'react-router-dom'
+import { Routes, Route, Link, useParams } from 'react-router-dom'
 import ChatWidget from './ChatWidget'
 
 // The chatbot needs the paid Python backend, so only show it in local dev or
@@ -25,8 +25,45 @@ function friendlyMeetingName(sourceFile) {
   return cleaned
 }
 
-function Header({ meetingCount, itemCount, termStart, latestMeetingDate, pendingCount }) {
-  const navigate = useNavigate()
+// URL-safe form of a term label, e.g. "2022–2026" -> "2022-2026".
+function termSlug(term) {
+  return term.term.replace(/[^0-9]+/g, '-')
+}
+
+function termPath(term, isCurrent) {
+  return isCurrent ? '/' : `/term/${termSlug(term)}`
+}
+
+function TermSwitcher({ terms, active }) {
+  return (
+    <nav style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 24 }} aria-label="Council term">
+      {terms.map((t, i) => {
+        const selected = t === active
+        return (
+          <Link
+            key={t.term}
+            to={termPath(t, i === 0)}
+            aria-current={selected ? 'page' : undefined}
+            style={{
+              fontSize: 13,
+              fontWeight: 700,
+              letterSpacing: '0.04em',
+              padding: '8px 14px',
+              textDecoration: 'none',
+              border: '1px solid oklch(0.15 0 0)',
+              background: selected ? 'oklch(0.15 0 0)' : 'transparent',
+              color: selected ? 'oklch(0.98 0 0)' : 'oklch(0.15 0 0)',
+            }}
+          >
+            {t.term} council{i === 0 ? ' (current)' : ''}
+          </Link>
+        )
+      })}
+    </nav>
+  )
+}
+
+function Header({ terms, term, isCurrent }) {
   return (
     <header style={{ padding: '48px 0 32px', borderBottom: '1px solid oklch(0.15 0 0)' }}>
       <div
@@ -38,7 +75,7 @@ function Header({ meetingCount, itemCount, termStart, latestMeetingDate, pending
           flexWrap: 'wrap',
         }}
       >
-        <div onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+        <Link to={termPath(term, isCurrent)} style={{ textDecoration: 'none', color: 'inherit' }}>
           <div
             style={{
               fontSize: 13,
@@ -51,34 +88,43 @@ function Header({ meetingCount, itemCount, termStart, latestMeetingDate, pending
             Sault Ste. Marie Council Records
           </div>
           <h1 style={{ fontSize: 34, fontWeight: 700, margin: 0 }}>Council Members</h1>
-        </div>
+        </Link>
         <div style={{ fontSize: 13, color: 'oklch(0.45 0 0)', textAlign: 'right' }}>
-          {meetingCount} meetings on file &middot; {itemCount} items indexed
+          {term.meetingCount} meetings on file &middot; {term.itemCount} items indexed
         </div>
       </div>
-      {termStart && (
-        <p style={{ fontSize: 13, color: 'oklch(0.45 0 0)', margin: '16px 0 0' }}>
-          Covers the full current council term: {termStart} &ndash; {latestMeetingDate}.
-          {pendingCount > 0 && (
-            <>
-              {' '}
-              {pendingCount} item{pendingCount === 1 ? '' : 's'} from the most recent meeting
-              {pendingCount === 1 ? '' : 's'} are still <strong>pending</strong> — minutes
-              haven't been posted yet, so these are drawn from the agenda and may not reflect
-              the final outcome.
-            </>
-          )}
-        </p>
-      )}
+      <TermSwitcher terms={terms} active={term} />
+      <p style={{ fontSize: 13, color: 'oklch(0.45 0 0)', margin: '16px 0 0' }}>
+        {term.firstMeetingDate ? (
+          <>
+            The {term.term} council: meetings from {term.firstMeetingDate} &ndash;{' '}
+            {term.latestMeetingDate}.
+          </>
+        ) : (
+          <>
+            The {term.term} council takes office {term.start}. Votes will appear here once
+            minutes from its meetings are posted.
+          </>
+        )}
+        {term.pendingCount > 0 && (
+          <>
+            {' '}
+            {term.pendingCount} item{term.pendingCount === 1 ? '' : 's'} from the most recent
+            meeting{term.pendingCount === 1 ? '' : 's'} are still <strong>pending</strong> —
+            minutes haven't been posted yet, so these are drawn from the agenda and may not
+            reflect the final outcome.
+          </>
+        )}
+      </p>
     </header>
   )
 }
 
-function CouncillorCard({ c }) {
+function CouncillorCard({ c, basePath }) {
   const [hover, setHover] = useState(false)
   return (
     <Link
-      to={`/councillor/${encodeURIComponent(c.shortName)}`}
+      to={`${basePath}councillor/${encodeURIComponent(c.shortName)}`}
       style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <div
@@ -91,16 +137,36 @@ function CouncillorCard({ c }) {
           transition: 'background 0.1s',
         }}
       >
+        {c.ward != null && (
+          <div
+            style={{
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              color: 'oklch(0.45 0 0)',
+              marginBottom: 8,
+            }}
+          >
+            Ward {c.ward}
+          </div>
+        )}
         <div style={{ fontSize: 18, fontWeight: 700 }}>Councillor {c.shortName}</div>
         <div style={{ fontSize: 13, color: 'oklch(0.45 0 0)', marginTop: 10 }}>
-          {c.count} items &middot; {c.movedCount} moved &middot; {c.secondedCount} seconded
+          {c.count > 0 ? (
+            <>
+              {c.count} items &middot; {c.movedCount} moved &middot; {c.secondedCount} seconded
+            </>
+          ) : (
+            'No recorded votes yet this term'
+          )}
         </div>
       </div>
     </Link>
   )
 }
 
-function Home({ data }) {
+function Home({ term, basePath }) {
   return (
     <section style={{ marginTop: 40 }}>
       <p style={{ fontSize: 16, color: 'oklch(0.4 0 0)', maxWidth: 640, margin: '0 0 32px' }}>
@@ -115,8 +181,8 @@ function Home({ data }) {
           border: '1px solid oklch(0.15 0 0)',
         }}
       >
-        {data.councillors.map((c) => (
-          <CouncillorCard key={c.name} c={c} />
+        {term.councillors.map((c) => (
+          <CouncillorCard key={c.name} c={c} basePath={basePath} />
         ))}
       </div>
       {CHAT_ENABLED && <ChatWidget />}
@@ -124,11 +190,11 @@ function Home({ data }) {
   )
 }
 
-function BackLink() {
+function BackLink({ to }) {
   const [hover, setHover] = useState(false)
   return (
     <Link
-      to="/"
+      to={to}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -330,16 +396,16 @@ function Toggle({ view, setView, allCount }) {
   )
 }
 
-function Detail({ data }) {
+function Detail({ term, basePath }) {
   const { name } = useParams()
-  const councillor = data.councillors.find((c) => c.shortName === name)
+  const councillor = term.councillors.find((c) => c.shortName === name)
   const [view, setView] = useState('all')
   const [selectedItem, setSelectedItem] = useState(null)
 
   if (!councillor) {
     return (
       <section style={{ marginTop: 40 }}>
-        <BackLink />
+        <BackLink to={basePath} />
         <p style={{ marginTop: 24 }}>Councillor not found.</p>
       </section>
     )
@@ -349,7 +415,7 @@ function Detail({ data }) {
 
   return (
     <section style={{ marginTop: 40 }}>
-      <BackLink />
+      <BackLink to={basePath} />
       <h2 style={{ fontSize: 32, fontWeight: 700, margin: '16px 0 4px' }}>
         Councillor {councillor.shortName}
       </h2>
@@ -391,10 +457,41 @@ function Detail({ data }) {
         {rows.map((item, i) => (
           <Row key={i} item={item} onSelect={setSelectedItem} />
         ))}
+        {rows.length === 0 && (
+          <div style={{ padding: '18px 20px', fontSize: 14, color: 'oklch(0.45 0 0)' }}>
+            No recorded votes in the {term.term} term yet.
+          </div>
+        )}
       </div>
 
       <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} />
     </section>
+  )
+}
+
+// Shared layout for one term's pages. The newest term lives at "/", older
+// ones at "/term/2022-2026", so existing links keep pointing at the current
+// council.
+function TermLayout({ data, isCurrent }) {
+  const { termId } = useParams()
+  const term = isCurrent ? data.terms[0] : data.terms.find((t) => termSlug(t) === termId)
+  if (!term) {
+    return (
+      <section style={{ marginTop: 40 }}>
+        <BackLink to="/" />
+        <p style={{ marginTop: 24 }}>Council term not found.</p>
+      </section>
+    )
+  }
+  const basePath = isCurrent ? '/' : `/term/${termSlug(term)}/`
+  return (
+    <>
+      <Header terms={data.terms} term={term} isCurrent={isCurrent} />
+      <Routes>
+        <Route index element={<Home term={term} basePath={basePath} />} />
+        <Route path="councillor/:name" element={<Detail term={term} basePath={basePath} />} />
+      </Routes>
+    </>
   )
 }
 
@@ -424,16 +521,9 @@ function App() {
       }}
     >
       <div style={{ maxWidth: 1120, margin: '0 auto', padding: '0 32px 96px' }}>
-        <Header
-          meetingCount={data.meetingCount}
-          itemCount={data.itemCount}
-          termStart={data.termStart}
-          latestMeetingDate={data.latestMeetingDate}
-          pendingCount={data.pendingCount}
-        />
         <Routes>
-          <Route path="/" element={<Home data={data} />} />
-          <Route path="/councillor/:name" element={<Detail data={data} />} />
+          <Route path="/term/:termId/*" element={<TermLayout data={data} />} />
+          <Route path="/*" element={<TermLayout data={data} isCurrent />} />
         </Routes>
       </div>
     </div>

@@ -3,8 +3,8 @@
 
 Scope: every actual City Council meeting (Regular / Special / Budget /
 Inaugural — as classified by meeting_type in 2_parse_minutes.py, not by
-filename) for the full current council term, i.e. as far back and as
-current as the source PDFs go. Sub-committees (Heritage, PRAC, etc.) are
+filename), as far back and as current as the source PDFs go, split into the
+council terms listed in council_terms.json. Sub-committees (Heritage, PRAC, etc.) are
 excluded — different membership, not "council votes." Only actual
 councillors (rows whose name starts with "Councillor ") are included; the
 parser also picked up incidental names from other committees and OCR noise,
@@ -34,6 +34,7 @@ from council_data import connect, get_scoped_items, get_scoped_meetings, short_n
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 PDF_DIR = PROJECT_ROOT / "pdfs"
+TERMS_FILE = PROJECT_ROOT / "council_terms.json"
 OUT_FILE = PROJECT_ROOT / "web" / "public" / "data.json"
 
 # Same header/moved/seconded/outcome patterns as 2_parse_minutes.py, reused
@@ -193,17 +194,6 @@ def main():
         it["bylawCount"] = bylaw_counts.get(it["id"], 0)
         it["score"] = score_item(it["title"], it["fullText"], it["outcome"], it["bylawCount"])
 
-    pending_count = sum(1 for it in items if it["pending"])
-
-    councillor_names = sorted(
-        {
-            it[role]
-            for it in items
-            for role in ("mover", "seconder")
-            if it[role] and it[role].startswith("Councillor ")
-        }
-    )
-
     def build_row(it, role):
         return {
             "date": it["date"],
@@ -218,10 +208,9 @@ def main():
             "sourceFile": it["sourceFile"],
         }
 
-    councillors = []
-    for full_name in councillor_names:
+    def build_councillor(full_name, ward, term_items):
         rows = []
-        for it in items:
+        for it in term_items:
             if it["mover"] == full_name:
                 rows.append(build_row(it, "Moved"))
             elif it["seconder"] == full_name:
@@ -230,37 +219,76 @@ def main():
 
         top10 = sorted(rows, key=lambda r: (r["score"], r["date"] or ""), reverse=True)[:10]
 
-        moved = sum(1 for r in rows if r["role"] == "Moved")
-        seconded = sum(1 for r in rows if r["role"] == "Seconded")
-        councillors.append(
+        return {
+            "name": full_name,
+            "shortName": short_name(full_name),
+            "ward": ward,
+            "count": len(rows),
+            "movedCount": sum(1 for r in rows if r["role"] == "Moved"),
+            "secondedCount": sum(1 for r in rows if r["role"] == "Seconded"),
+            "items": rows,
+            "top10": top10,
+        }
+
+    # Rosters come from council_terms.json, not the minutes: right after an
+    # election the new councillors have no recorded votes yet but should still
+    # be listed. Each item belongs to the term whose date range contains it;
+    # anyone with votes in a term but missing from its roster (e.g. a
+    # mid-term appointment) is still listed, just without a ward.
+    terms_config = json.loads(TERMS_FILE.read_text())["terms"]
+    terms_config.sort(key=lambda t: t["start"], reverse=True)
+
+    terms = []
+    for i, term in enumerate(terms_config):
+        end = terms_config[i - 1]["start"] if i > 0 else None
+        is_oldest = i == len(terms_config) - 1
+        term_items = [
+            it
+            for it in items
+            if (is_oldest or (it["date"] or "") >= term["start"])
+            and (end is None or (it["date"] or "") < end)
+        ]
+        term_meeting_ids = {it["meeting_id"] for it in term_items}
+        term_dates = sorted(
+            meetings[mid]["meeting_date"]
+            for mid in term_meeting_ids
+            if meetings[mid]["meeting_date"]
+        )
+
+        ward_by_name = {c["name"]: c["ward"] for c in term["councillors"]}
+        names = set(ward_by_name) | {
+            it[role]
+            for it in term_items
+            for role in ("mover", "seconder")
+            if it[role] and it[role].startswith("Councillor ")
+        }
+        councillors = [build_councillor(n, ward_by_name.get(n), term_items) for n in names]
+        councillors.sort(key=lambda c: (c["ward"] is None, c["ward"] or 0, c["shortName"]))
+
+        terms.append(
             {
-                "name": full_name,
-                "shortName": short_name(full_name),
-                "count": len(rows),
-                "movedCount": moved,
-                "secondedCount": seconded,
-                "items": rows,
-                "top10": top10,
+                "term": term["term"],
+                "start": term["start"],
+                "end": end,
+                "meetingCount": len(term_meeting_ids),
+                "itemCount": len(term_items),
+                "firstMeetingDate": term_dates[0] if term_dates else None,
+                "latestMeetingDate": term_dates[-1] if term_dates else None,
+                "pendingCount": sum(1 for it in term_items if it["pending"]),
+                "councillors": councillors,
             }
         )
 
-    councillors.sort(key=lambda c: c["shortName"])
-
-    meeting_dates = sorted(m["meeting_date"] for m in meetings.values() if m["meeting_date"])
-
-    data = {
-        "meetingCount": len(meetings),
-        "itemCount": len(items),
-        "termStart": meeting_dates[0] if meeting_dates else None,
-        "latestMeetingDate": meeting_dates[-1] if meeting_dates else None,
-        "pendingCount": pending_count,
-        "councillors": councillors,
-    }
+    data = {"terms": terms}
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUT_FILE.write_text(json.dumps(data, indent=2))
-    print(f"Wrote {OUT_FILE} — {len(meetings)} meetings, {len(items)} items, {len(councillors)} councillors")
-
+    print(f"Wrote {OUT_FILE}")
+    for t in terms:
+        print(
+            f"  {t['term']}: {t['meetingCount']} meetings, {t['itemCount']} items, "
+            f"{len(t['councillors'])} councillors"
+        )
 
 if __name__ == "__main__":
     main()
