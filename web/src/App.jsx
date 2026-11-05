@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, Link, useParams, useNavigate } from 'react-router-dom'
 import ChatWidget from './ChatWidget'
 
+// The chatbot needs the paid Python backend, so only show it in local dev or
+// when a deployed backend URL is configured.
+const CHAT_ENABLED = import.meta.env.DEV || Boolean(import.meta.env.VITE_CHAT_API_URL)
+
 function useData() {
   const [data, setData] = useState(null)
   useEffect(() => {
@@ -115,7 +119,7 @@ function Home({ data }) {
           <CouncillorCard key={c.name} c={c} />
         ))}
       </div>
-      <ChatWidget />
+      {CHAT_ENABLED && <ChatWidget />}
     </section>
   )
 }

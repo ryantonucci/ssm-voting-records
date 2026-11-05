@@ -12,7 +12,6 @@ parsed/
 dbs/
 manifest.json
 votes_rollup.csv
-web/public/data.json
 
 # Node / Vite
 web/node_modules/
