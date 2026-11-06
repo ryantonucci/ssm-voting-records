@@ -1,8 +1,10 @@
 // Rate limits for the chat endpoint: per-visitor hourly/daily caps plus a
 // site-wide daily cap that keeps usage inside the model's free quota.
-// Uses Upstash Redis (REST API) when UPSTASH_REDIS_REST_URL/TOKEN are set, so
-// counts are shared across serverless instances; otherwise falls back to an
-// in-memory counter, which is fine for local testing.
+// Uses Upstash Redis (REST API) when its URL and token are set, so counts are
+// shared across serverless instances; otherwise falls back to an in-memory
+// counter, which is fine for local testing. Vercel's Upstash integration
+// names the variables KV_REST_API_URL/TOKEN; Upstash's own docs use
+// UPSTASH_REDIS_REST_URL/TOKEN. Either works.
 
 const LIMITS = {
   ipHour: Number(process.env.CHAT_LIMIT_PER_IP_HOUR || 10),
@@ -13,8 +15,8 @@ const LIMITS = {
 const memory = new Map()
 
 async function incr(key, ttlSeconds) {
-  const url = process.env.UPSTASH_REDIS_REST_URL
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN
   if (url && token) {
     const res = await fetch(`${url}/pipeline`, {
       method: 'POST',
