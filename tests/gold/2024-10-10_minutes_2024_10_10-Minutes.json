@@ -1,0 +1,81 @@
+{
+ "source_file": "2024-10-10_minutes_2024_10_10-Minutes.pdf",
+ "meeting_date": "2024-10-10",
+ "items": [
+  {
+   "item_number": "2",
+   "title": "Approve Agenda as Presented",
+   "mover": "Councillor M. Bruni",
+   "seconder": "Councillor S. Hollingsworth",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Agenda for the October 10, 2024 Special City Council Meeting a",
+   "resolution_end": "ouncil Meeting as presented be approved.",
+   "resolution_len": 104,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor M. Bruni",
+     "Councillor S. Hollingsworth",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "4.1",
+   "title": "Report of the Assistant City Solicitor/Senior Litigation Counsel",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "4.2",
+   "title": "By-law 2024-151 (Property) Surplus 941 Queen Street East, 941 Queen Street East Water Lot, 995 Queen Street East, 10 Lucy Terrace",
+   "mover": "Councillor M. Bruni",
+   "seconder": "Councillor S. Hollingsworth",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2024-151"
+   ],
+   "resolution_start": "Resolved that By-Law 2024-151 being a by-law to declare the City owned propertie",
+   "resolution_end": " Council this 10th day of October, 2024.",
+   "resolution_len": 472,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor M. Bruni",
+     "Councillor S. Hollingsworth",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "5",
+   "title": "Adjournment",
+   "mover": "Councillor M. Bruni",
+   "seconder": "Councillor L. Vezeau-Allen",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that this Council shall now adjourn.",
+   "resolution_end": "ved that this Council shall now adjourn.",
+   "resolution_len": 45,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor M. Bruni",
+     "Councillor L. Vezeau-Allen",
+     "Carried"
+    ]
+   ]
+  }
+ ]
+}

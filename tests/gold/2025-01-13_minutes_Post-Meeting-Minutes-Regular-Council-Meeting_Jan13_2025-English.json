@@ -1,0 +1,1266 @@
+{
+ "source_file": "2025-01-13_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Jan13_2025-English.pdf",
+ "meeting_date": "2025-01-13",
+ "items": [
+  {
+   "item_number": "2",
+   "title": "Adoption of Minutes",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Minutes of the Regular Council Meeting of December 2, 2024 and",
+   "resolution_end": "Meeting of December 9, 2024 be approved.",
+   "resolution_len": 128,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "4.1",
+   "title": "Mayor M. Shoemaker – A-14-24-Z.OP 550 Second Line East",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "4.2",
+   "title": "Mayor M. Shoemaker – By-law 2025-12 (Street Assumption) Connaught Avenue 1 Foot Reserve",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "5",
+   "title": "Approve Agenda as Presented",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Agenda for January 13, 2025 City Council Meeting as presented ",
+   "resolution_end": "ouncil Meeting as presented be approved.",
+   "resolution_len": 92,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "6.1",
+   "title": "We Respect Each Other Video",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7",
+   "title": "Communications and Routine Reports of City Departments, Boards and Committees – Consent Agenda",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that all the items listed under date January 13, 2025 – Agenda item 7 –",
+   "resolution_end": "nsent Agenda be approved as recommended.",
+   "resolution_len": 123,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor M. Scott",
+     "Carried"
+    ],
+    [
+     "additional",
+     "Councillor S. Hollingsworth",
+     "Councillor S. Spina",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.1",
+   "title": "Outstanding Council Resolutions",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.2",
+   "title": "Municipal Codes of Conduct",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.3",
+   "title": "Two Twelve-Metre Diesel Buses – Transit",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Manager of Purchasing dated January 13, 2025 con",
+   "resolution_end": " will appear on a future Council Agenda.",
+   "resolution_len": 412,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.4",
+   "title": "Extension of Downtown Security Patrol Services",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Manager of Purchasing dated January 13, 2025 con",
+   "resolution_end": "xtended for a period of one year (2025).",
+   "resolution_len": 244,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.5",
+   "title": "Northern Ontario Development Program Contribution Agreement",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.6",
+   "title": "Housing Enabling Water Systems Fund – Transfer Payment Agreement",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.7",
+   "title": "Ronald A. Irwin Civic Centre – Seventh Floor",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Engineering dated January 13, 2025 c",
+   "resolution_end": "eventh Floor be received as information.",
+   "resolution_len": 162,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.8",
+   "title": "Lane Assumption, Closing and Conveyance – Cameron Subdivision",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.9",
+   "title": "Traffic By-law Updates 2025",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Manager of Design and Transportation Engineering",
+   "resolution_end": "to Council for approval at a later date.",
+   "resolution_len": 326,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.1",
+   "title": "Administration",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.2",
+   "title": "Corporate Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.3",
+   "title": "Community Development and Enterprise Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.4",
+   "title": "Public Works and Engineering Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.5",
+   "title": "Fire Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.6",
+   "title": "Legal",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.7",
+   "title": "Planning",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.7.1",
+   "title": "A-13-24-Z 690 Black Road",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Junior Planner dated January 13, 2025 concerning",
+   "resolution_end": " necessary by-law(s) to effect the same.",
+   "resolution_len": 732,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.7.2",
+   "title": "A-14-24-Z.OP 550 Second Line East",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Junior Planner dated January 13, 2025 concerning",
+   "resolution_end": " necessary by-law(s) to effect the same.",
+   "resolution_len": 652,
+   "vote_results": [
+    10,
+    0,
+    1,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8",
+   "title": "Boards and Committees",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.1",
+   "title": "Board and Committee Appointments 2025-2026",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Deputy City Clerk dated January 13, 2025 concern",
+   "resolution_end": "ee appointments until December 31, 2026.",
+   "resolution_len": 290,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2",
+   "title": "Appointments to Boards and Committees (Members Appointed by Council)",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that all appointments under Agenda item 8.8.2 be approved as recommende",
+   "resolution_end": "ue until their successors are appointed.",
+   "resolution_len": 179,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.1",
+   "title": "Anti-Hate Committee",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor A. Caputo, Councillor C. Gardi, Mayor M. Shoemaker (ex ",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 321,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.2",
+   "title": "Committee of Revision – Local Improvements",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.3",
+   "title": "Community Development Award Committee",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.4",
+   "title": "Cultural Vitality Committee",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor S. Spina and community members Miranda Bouchard, Vaness",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 271,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.5",
+   "title": "Dangerous Dog Committee",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillors M. Bruni, S. Kinach, and M. Scott be appointed to the ",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 147,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.6",
+   "title": "Emergency Management Planning Committee",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Mayor M. Shoemaker, Councillors C. Gardi and S. Hollingsworth be a",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 179,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.7",
+   "title": "Environmental Monitoring Committee",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor S. Hollingsworth and community members Christopher Marc",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 227,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.8",
+   "title": "Fence Viewers Committee",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.9",
+   "title": "Historic Sites Board",
+   "mover": "Councillor M. Scott",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor S. Hollingsworth and community members Heather Bot, Car",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 290,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor M. Scott",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.10",
+   "title": "Holiday Lighting/Hallowe'en Spirit Award Selection Committee",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.11",
+   "title": "Municipal Heritage Committee",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor S. Spina and community members Hanna Ellis, Lise Joyal,",
+   "resolution_end": " will appear on a future Council Agenda.",
+   "resolution_len": 290,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.2.12",
+   "title": "Parks and Recreation Advisory Committee",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.13",
+   "title": "Property Standards Committee",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.14",
+   "title": "PUC Water Commission",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.15",
+   "title": "Tourism Board of Directors",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.2.16",
+   "title": "Walk of Fame Selection Committee",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillors L. Dufour, S. Kinach and M. Scott, and community membe",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 213,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3",
+   "title": "Appointments to Boards and Committees Which are not Boards or Committees of Council",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that all appointments under Agenda item 8.8.3 be approved as recommende",
+   "resolution_end": "except Agenda items 8.8.3.3 and 8.8.3.8.",
+   "resolution_len": 131,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.1",
+   "title": "Algoma District Municipal Association",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor L. Dufour",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillors C. Gardi and S. Hollingsworth, with Councillor M. Scot",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 196,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor L. Dufour",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.2",
+   "title": "Algoma Public Health",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor S. Spina, Sonia Tassone, and Natalie Zagordo be appoint",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 160,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.4",
+   "title": "District of Sault Ste. Marie Social Services Administration Board",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillors A. Caputo, S. Spina, L. Vezeau-Allen, R. Zagordo and M",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 217,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.5",
+   "title": "Celebrating International Friendship Committee Bridge Walk Committee",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor R. Zagordo be appointed to the Celebrating Internationa",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 168,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.6",
+   "title": "Sault Ste. Marie Region Conservation Authority",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillors M. Bruni, C. Gardi, S. Hollingsworth, and R. Zagordo b",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 188,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.7",
+   "title": "Source Protection Committee",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Manager of Development and Environmental Engineering be appoin",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 162,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.3",
+   "title": "Chamber of Commerce",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Councillor L. Vezeau-Allen be appointed to the Chamber of Commerce",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 130,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.3.8",
+   "title": "Police Service Board",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Mayor Shoemaker, Councillor M. Bruni, and community member Nuala K",
+   "resolution_end": "e Sault Ste. Marie Police Service Board.",
+   "resolution_len": 143,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.4",
+   "title": "Nominations to Boards and Committees which are not Boards or Committees of Council",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that all appointments under Agenda item 8.8.4 be approved as recommende",
+   "resolution_end": "a item 8.8.4 be approved as recommended;",
+   "resolution_len": 82,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.4.1",
+   "title": "Museum Management Board",
+   "mover": "Councillor S. Spina",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Manager of Recreation and Culture or delegate be nominated to ",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 183,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Spina",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8.4.2",
+   "title": "St. Marys River Bi-national Public Advisory Committee",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Manager of Development and Environmental Engineering be nomina",
+   "resolution_end": "m January 13, 2025 to December 31, 2026.",
+   "resolution_len": 211,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "9.1",
+   "title": "Residency Requirement Policy for New Department Heads",
+   "mover": "Councillor S. Kinach",
+   "seconder": "Councillor M. Bruni",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Whereas Sault Ste Marie City Council recognizes the importance of fostering stro",
+   "resolution_end": "they continue in their current position.",
+   "resolution_len": 1113,
+   "vote_results": [
+    7,
+    4,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor S. Kinach",
+     "Councillor M. Bruni",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12",
+   "title": "Consideration and Passing of By-laws",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that all By-laws under item 12 of the Agenda under date January 13, 202",
+   "resolution_end": "e and except By-law 2025-12 be approved.",
+   "resolution_len": 125,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1",
+   "title": "By-laws before Council to be passed which do not require more than a simple majority",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "12.1.1",
+   "title": "By-law 2025-1 (Traffic) Amendments to Traffic By-law 77-200",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-1"
+   ],
+   "resolution_start": "Resolved that By-law 2025-1 being a by-law to consolidate amendments to Traffic ",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 151,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.2",
+   "title": "By-law 2025-2 (Street Assumption) Cameron Lane",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-2"
+   ],
+   "resolution_start": "Resolved that By-law 2025-2 being a by-law to assume for public use and establis",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 341,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.3",
+   "title": "By-law 2025-4 (Official Plan Amendment) Sackville Road Extension",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-4"
+   ],
+   "resolution_start": "Resolved that By-law 2025-4 being a by-law to adopt Amendment No. 255 and Amendm",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 279,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.4",
+   "title": "By-law 2025-5 (Taxes) Interim Tax Levies",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-5"
+   ],
+   "resolution_start": "Resolved that By-law 2025-5 being a by-law to provide for Interim Tax Levies be ",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 134,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.5",
+   "title": "By-law 2025-9 (Agreement) Housing-Enabling Water Systems Fund Improvements Peoples Road Sanitary Sewer",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-9"
+   ],
+   "resolution_start": "Resolved that By-law 2025-9 being a by-law to authorize the execution of the Agr",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 359,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.6",
+   "title": "By-law 2025-10 (Agreement) Federal Funding Ermatinger Clergue National Historic Site",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-10"
+   ],
+   "resolution_start": "Resolved that By-Law 2025-10 being a by-law to authorize the execution of the Co",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 422,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.7",
+   "title": "By-law 2025-11 (Agreement) Transit Union Local 1767",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-11"
+   ],
+   "resolution_start": "Resolved that By-Law 2025-11 being a by-law to authorize the execution of the Ag",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 266,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.2",
+   "title": "By-laws before Council for FIRST and SECOND reading which do not require more than a simple majority",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "12.2.1",
+   "title": "By-law 2025-3 (Street Closing and Conveyance) Cameron Lane",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-3"
+   ],
+   "resolution_start": "Resolved that By-law 2025-3 being a by-law to stop up, close and authorize the c",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 233,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.3",
+   "title": "By-laws before Council for THIRD reading which do not require more than a simple majority",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "12.1.8",
+   "title": "By-law 2025-12 (Street Assumption) Connaught Avenue 1 Foot Reserve",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2025-12"
+   ],
+   "resolution_start": "Resolved that By-Law 2025-12 being a by-law to assume for public use and establi",
+   "resolution_end": " Council this 13th day of January, 2025.",
+   "resolution_len": 310,
+   "vote_results": [
+    10,
+    0,
+    1,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "15",
+   "title": "Adjournment",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that this Council now adjourn.",
+   "resolution_end": "Resolved that this Council now adjourn.",
+   "resolution_len": 39,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  }
+ ]
+}

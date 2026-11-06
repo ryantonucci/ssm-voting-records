@@ -1,0 +1,137 @@
+{
+  "_comment": "Audit flags (audit_minutes.py) checked against the source PDF and found to be genuine quirks of the source document, not parser errors. Only flags NOT listed here fail the daily data update. Add an entry only after checking the PDF.",
+  "flags": [
+    {
+      "key": "BYLAW_TEXT_MISMATCH|2023-01-09_minutes_2023_01_09_Minutes.pdf|12.1.2",
+      "reason": "Typo in minutes: resolution says By-law 2022-2 under heading By-law 2023-2; heading number kept."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2023-01-23_minutes_2023_01_23_Minutes.pdf|8",
+      "reason": "Genuine: closed-session motion printed without a Carried line."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2023-01-23_minutes_2023_01_23_Minutes.pdf|9",
+      "reason": "Genuine: adjournment motion printed without a Carried line."
+    },
+    {
+      "key": "VOTE_RESULTS_MISMATCH|2023-01-30_minutes_2023_01_30_Minutes.pdf|8.3.3",
+      "reason": "Source tally error: 11 rows (6 for, 4 against, 1 absent) but Results row says 6 4 0 2."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2023-09-25_minutes_Post-Meeting-Minutes-Special-Meeting_Sep25_2023-English-1.pdf|4",
+      "reason": "Genuine: joint meeting; motion to go into Committee of the Whole printed without an outcome."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2023-09-25_minutes_Post-Meeting-Minutes-Special-Meeting_Sep25_2023-English-1.pdf|13",
+      "reason": "Genuine: joint meeting adjournment printed without an outcome."
+    },
+    {
+      "key": "VOTE_RESULTS_MISMATCH|2023-12-11_minutes_Post-Meeting-Minutes-Budget-Meeting_Dec11_2023-English.pdf|10.1",
+      "reason": "Source vote table is garbled: every member listed twice (once Absent, once For); Results row reads 1 0 0 10."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2023-12-18_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Dec18_2023-English.pdf|12.1.15",
+      "reason": "Genuine: by-law marked \"(Excepted)\" from the block approval; no separate outcome recorded."
+    },
+    {
+      "key": "BYLAW_TEXT_MISMATCH|2024-03-18_minutes_2024_03_18-Minutes.pdf|12.1.16",
+      "reason": "Typo in minutes: resolution says By-Law 2024-28 under heading By-law 2024-39 (Rossmore Road); heading number kept."
+    },
+    {
+      "key": "OUTCOME_NO_MOVER|2024-04-08_minutes_2024_04_08-Minutes.pdf|7.10",
+      "reason": "Genuine: minutes print the resolution and Carried with no Moved by / Seconded by lines."
+    },
+    {
+      "key": "BYLAW_TEXT_MISMATCH|2024-05-13_minutes_2024_05_13-Minutes.pdf|12.1.14",
+      "reason": "Typo in minutes: resolution says By-Law 2024-86 under heading By-law 2024-85; heading number kept."
+    },
+    {
+      "key": "VOTE_ROSTER|2024-06-24_minutes_2024_06_24-Minutes-1.pdf|8.5.1",
+      "reason": "Source table omits Councillor M. Scott's row."
+    },
+    {
+      "key": "VOTE_RESULTS_MISMATCH|2024-06-24_minutes_2024_06_24-Minutes-1.pdf|8.5.1",
+      "reason": "Source table omits Councillor M. Scott's row although Results says 11 for."
+    },
+    {
+      "key": "BYLAW_DUP_OWNER|2024-06-24_minutes_2024_06_24-Minutes-1.pdf|8.1.1.2",
+      "reason": "By-law 2024-104 was passed under 8.1.1.2 and also listed (without a motion) under 12.1.6."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2024-08-12_minutes_2024_08_12-Minutes.pdf|2",
+      "reason": "Genuine: adoption-of-minutes motion printed without a Carried line."
+    },
+    {
+      "key": "MOVER_NO_SECONDER|2024-10-21_minutes_2024_10_21-Minutes.pdf|7.5",
+      "reason": "Genuine: minutes state there was no seconder for the main motion; officially read and not dealt with."
+    },
+    {
+      "key": "OUTCOME_NO_MOVER|2024-11-12_minutes_2024_11_12-Minutes.pdf|12.1.4",
+      "reason": "Genuine: by-law resolution and recorded vote printed without Moved by / Seconded by lines."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2024-11-12_minutes_2024_11_12-Minutes.pdf|14",
+      "reason": "Genuine: closed-session motion printed without a Carried line."
+    },
+    {
+      "key": "BYLAW_TEXT_MISMATCH|2025-02-24_agenda_Merged-Agenda-Package-Regular-Council-Meeting_Feb24_2025.pdf|12.2.1",
+      "reason": "Typo in source: resolution says By-law 2025-27 under heading By-law 2025-28 (street closing); heading number kept."
+    },
+    {
+      "key": "BYLAW_TEXT_MISMATCH|2025-02-24_minutes_Minutes-attached-to-Merged-Agenda-Package-Regular-Council-Meeting_Mar17_2025.pdf|12.2.1",
+      "reason": "Typo in source: resolution says By-law 2025-27 under heading By-law 2025-28 (street closing); heading number kept."
+    },
+    {
+      "key": "TEXT_EMPTY|2025-06-02_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Jun02_2025-English.pdf|7.15",
+      "reason": "Genuine: minutes record Moved/Seconded/Carried with no resolution text."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2025-06-23_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Jun23_2025-English.pdf|7.14",
+      "reason": "Genuine: main motion superseded by a referral (\"7.14.1 Proposed Amendment\", Carried); main never voted."
+    },
+    {
+      "key": "BYLAW_TEXT_MISMATCH|2025-07-14_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Jul14_2025-English.pdf|12.1.3",
+      "reason": "Typo in minutes: resolution says By-law 2025-12 under heading By-law 2025-112; heading number kept."
+    },
+    {
+      "key": "BYLAW_DUP_OWNER|2025-11-03_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Nov03_2025-English.pdf|12.1",
+      "reason": "Minutes print the By-law 2025-155 motion directly under the 12.1 sub-heading as well as under 12.1.4."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2025-11-24_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Nov24_2025-English.pdf|12",
+      "reason": "Genuine: block by-law motion printed without a Carried line."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2025-12-15_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Dec15_2025-English.pdf|12.1.6",
+      "reason": "Genuine: by-law motion printed without a Carried line."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2026-03-23_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Mar23_2026-English.pdf|7.3.1",
+      "reason": "Genuine: notice of motion, no vote at this meeting."
+    },
+    {
+      "key": "MOVER_NO_SECONDER|2026-03-23_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Mar23_2026-English.pdf|7.3.1",
+      "reason": "Genuine: notice of motion, no seconder or vote recorded."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2026-04-13_minutes_Minutes-attached-to-Merged-Agenda-Package-Regular-Council-Meeting_May04_2026.pdf|9.2",
+      "reason": "Genuine: motion deferred to the May 25, 2026 agenda at the mover's request; no vote."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2026-05-04_minutes_Minutes-attached-to-Agenda-Package-Regular-Council-Meeting_May25_2026-Final.pdf|7.7",
+      "reason": "Genuine: no outcome line printed for this motion (followed by MYAC comments)."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2026-08-31_minutes_Minutes-attached-to-Merged-Agenda-Package-Regular-Council-Meeting_Sep21_2026.pdf|9.4",
+      "reason": "Genuine: motion to be dealt with September 21, 2026; no vote."
+    },
+    {
+      "key": "OUTCOME_NO_MOVER|unknown-date_minutes_02_21_23_Minutes.pdf|12.1.9",
+      "reason": "Genuine: no Moved by / Seconded by lines for this by-law in the minutes."
+    },
+    {
+      "key": "OUTCOME_NO_MOVER|unknown-date_minutes_02_21_23_Minutes.pdf|12.1.10",
+      "reason": "Genuine: no Moved by / Seconded by lines for this by-law in the minutes."
+    }
+  ]
+}

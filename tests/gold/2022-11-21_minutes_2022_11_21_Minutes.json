@@ -1,0 +1,932 @@
+{
+ "source_file": "2022-11-21_minutes_2022_11_21_Minutes.pdf",
+ "meeting_date": "2022-11-21",
+ "items": [
+  {
+   "item_number": "2",
+   "title": "Adoption of Minutes",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Minutes of the Regular Council Meeting of November 7, 2022 and",
+   "resolution_end": "eeting of November 15, 2022 be approved.",
+   "resolution_len": 132,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "4.1",
+   "title": "Councillor S. Spina – By-law 2022-182 (Parking) By-law Enforcement Officers Amend By-law 93-165",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "4.2",
+   "title": "Councillor S. Spina – By-law 2022-183 (Parking) Municipal Law Enforcement Officers Amend By-law 90-305",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "5",
+   "title": "Approve Agenda as Presented",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the Agenda for November 21, 2022 City Council Meeting as presented",
+   "resolution_end": "ouncil Meeting as presented be approved.",
+   "resolution_len": 93,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "6.1",
+   "title": "World AIDS Day",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "6.2",
+   "title": "Zonta Says No to Violence Day",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "6.3",
+   "title": "Retired Teachers of Ontario 50th Anniversary",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7",
+   "title": "Communications and Routine Reports of City Departments, Boards and Committees – Consent Agenda",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that all the items listed under date November 21 2022 – Agenda item 7 –",
+   "resolution_end": "nda item 7.2 be approved as recommended.",
+   "resolution_len": 155,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.1",
+   "title": "Correspondence",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.3",
+   "title": "Best for Kids Transit Pilot – 2022 Update",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Community Services dated November 21",
+   "resolution_end": "o the day after Labour Day in September.",
+   "resolution_len": 347,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.4",
+   "title": "Transit Pass Partnership with the District of Sault Ste. Marie Social Services Administration Board",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.5",
+   "title": "Twin Pad Arena Complement Request",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Community Services dated November 21",
+   "resolution_end": "equired full time equivalent complement.",
+   "resolution_len": 451,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.6",
+   "title": "Twin Pad Reallocation of Contingency Funding",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Community Services dated November 21",
+   "resolution_end": "ded from the project contingency budget.",
+   "resolution_len": 320,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.7",
+   "title": "October 2022 Community Development Fund – Green Initiatives Program Application",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Sustainability Coordinator dated November 21, 20",
+   "resolution_end": "n Club LED Lighting Project be approved.",
+   "resolution_len": 346,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.8",
+   "title": "Federation of Canadian Municipalities Greenhouse Gas Reduction Pathway Feasibility Study Funding",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Sustainability Coordinator dated November 21, 20",
+   "resolution_end": "ducting six deep energy retrofit audits.",
+   "resolution_len": 506,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.9",
+   "title": "Municipal Law and By-Law Enforcement Officers",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.10",
+   "title": "Brock Street Closure Extension",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.11",
+   "title": "2023 Connecting Link Program",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Engineering dated November 21, 2022 ",
+   "resolution_end": "ion to the 2023 Connecting Link Program.",
+   "resolution_len": 302,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "7.12",
+   "title": "West End Sewage Treatment Plant Phase I and Effluent Pumps",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "7.2",
+   "title": "Property Tax Appeals",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Manager of Taxation dated November 21, 2022 conc",
+   "resolution_end": "ve and except 145 Old Garden River Road.",
+   "resolution_len": 252,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor C. Gardi",
+     "Carried"
+    ],
+    [
+     "additional",
+     "Councillor L. Dufour",
+     "Councillor S. Hollingsworth",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.1",
+   "title": "Administration",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.2",
+   "title": "Corporate Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.2.1",
+   "title": "Finance Committee Terms of Reference",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Chief Financial Officer and Treasurer dated Nove",
+   "resolution_end": "Council to act as the Finance Committee.",
+   "resolution_len": 265,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.3",
+   "title": "Community Development and Enterprise Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.3.1",
+   "title": "Boardwalk Promenade",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Deputy CAO, Community Development and Enterprise",
+   "resolution_end": " will appear on a future Council Agenda.",
+   "resolution_len": 717,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.3.2",
+   "title": "Aquatic Lead Position",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Community Services dated November 21",
+   "resolution_end": "he 2023 Budget meeting in February 2023.",
+   "resolution_len": 395,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.4",
+   "title": "Public Works and Engineering Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.5",
+   "title": "Fire Services",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.6",
+   "title": "Legal",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.7",
+   "title": "Planning",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.7.1",
+   "title": "Independent Electricity System Operator Battery Storage Request for Support – Starwood Energy Group",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor A. Caputo",
+   "outcome": "Postponed",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Planning dated November 21, 2022 be ",
+   "resolution_end": "ng Act and building permit requirements.",
+   "resolution_len": 2269,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor A. Caputo",
+     "Postponed"
+    ],
+    [
+     "amendment",
+     "Councillor A. Caputo",
+     "Councillor L. Dufour",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.7.2",
+   "title": "Independent Electricity System Operator Battery Storage Request for Support – Alectra Convergent Development LP – 885R McNabb St.",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Director of Planning dated November 21, 2022 be ",
+   "resolution_end": "ng Act and building permit requirements.",
+   "resolution_len": 2212,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.7.3",
+   "title": "A-12-22-Z 384 Bush Street",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that the report of the Planner dated November 21, 2022 concerning appli",
+   "resolution_end": " necessary by-law(s) to effect the same.",
+   "resolution_len": 619,
+   "vote_results": [
+    9,
+    2,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "8.8",
+   "title": "Boards and Committees",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "8.8.1",
+   "title": "Board and Committee Nominating Task Force",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that Mayor Shoemaker, Councillor S. Hollingsworth and Councillor A. Cap",
+   "resolution_end": " November 21, 2022 to November 14, 2026.",
+   "resolution_len": 459,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "9.1",
+   "title": "Request For an Update Regarding the Former General and Plummer Hospitals",
+   "mover": "Councillor S. Hollingsworth",
+   "seconder": "Councillor S. Spina",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Whereas in 2006 and 2016, Sault Ste. Marie initiated a Downtown Development Stra",
+   "resolution_end": "n with regard to the old hospital sites.",
+   "resolution_len": 914,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor S. Hollingsworth",
+     "Councillor S. Spina",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "9.2",
+   "title": "Reaffirming Sault Ste. Marie's Interest to Canada Water Agency",
+   "mover": "Councillor C. Gardi",
+   "seconder": "Councillor L. Dufour",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Whereas the Government of Canada announced in 2020 the establishment of the Cana",
+   "resolution_end": "e. Marie a superior home for the agency.",
+   "resolution_len": 2053,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor C. Gardi",
+     "Councillor L. Dufour",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12",
+   "title": "Consideration and Passing of By-laws",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that all By-laws under item 12 of the Agenda under date November 21, 20",
+   "resolution_end": "-laws 2022-182 and 2022-183 be approved.",
+   "resolution_len": 141,
+   "vote_results": [
+    11,
+    0,
+    0,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1",
+   "title": "By-laws before Council to be passed which do not require more than a simple majority",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "12.1.1",
+   "title": "By-law 2022-180 (Council Procedure) Acting Mayor Schedule",
+   "mover": "Councillor C. Gardi",
+   "seconder": "Councillor L. Dufour",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2022-180"
+   ],
+   "resolution_start": "Resolved that By-law 2022-180 being a by-law to provide for the appointment of p",
+   "resolution_end": "Council this 21st day of November, 2022.",
+   "resolution_len": 331,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor C. Gardi",
+     "Councillor L. Dufour",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.2",
+   "title": "By-law 2022-181 (Agreement) Transit Pass Partnership",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2022-181"
+   ],
+   "resolution_start": "Resolved that By-law 2022-181 being a by-law to authorize the execution of the A",
+   "resolution_end": "Council this 21st day of November, 2022.",
+   "resolution_len": 330,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.5",
+   "title": "By-law 2022-186 (Temporary Street Closing - Brock Street)",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2022-186"
+   ],
+   "resolution_start": "Resolved that By-law 2022-186 being a by-law to amend By-law 2022-162 (which ame",
+   "resolution_end": "Council this 21st day of November, 2022.",
+   "resolution_len": 336,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.6",
+   "title": "By-law 2022-187 (Agreement) Engineering Fee Amendment West End Sewage Treatment Plant Phase 1 Upgrades",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2022-187"
+   ],
+   "resolution_start": "Resolved that By-law 2022-187 being a by-law to authorize the execution of the A",
+   "resolution_end": "Council this 21st day of November, 2022.",
+   "resolution_len": 277,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.7",
+   "title": "By-law 2022-188 (Appointments) Appointing Building Inspectors",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2022-188"
+   ],
+   "resolution_start": "Resolved that By-law 2022-188 being a by-law to appoint Inspectors under the Bui",
+   "resolution_end": "Council this 21st day of November, 2022.",
+   "resolution_len": 228,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.3",
+   "title": "By-law 2022-182 (Parking) By-law Enforcement Officers Amend By-law 93-165",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2022-182"
+   ],
+   "resolution_start": "Resolved that By-law 2022-182 being a by-law to appoint by-law enforcement offic",
+   "resolution_end": "Council this 21st day of November, 2022.",
+   "resolution_len": 216,
+   "vote_results": [
+    10,
+    0,
+    1,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.1.4",
+   "title": "By-law 2022-183 (Parking) Municipal Law Enforcement Officers Amend By-law 90-305",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [
+    "2022-183"
+   ],
+   "resolution_start": "Resolved that By-law 2022-183 being a by-law to appoint Municipal By-law Enforce",
+   "resolution_end": "Council this 21st day of November, 2022.",
+   "resolution_len": 248,
+   "vote_results": [
+    10,
+    0,
+    1,
+    0
+   ],
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "12.3",
+   "title": "By-laws before Council for THIRD reading which do not require more than a simple majority",
+   "mover": null,
+   "seconder": null,
+   "outcome": null,
+   "bylaw_numbers": [],
+   "resolution_start": "",
+   "resolution_end": "",
+   "resolution_len": 0,
+   "vote_results": null,
+   "motions": []
+  },
+  {
+   "item_number": "14",
+   "title": "Closed Session",
+   "mover": "Councillor L. Vezeau-Allen",
+   "seconder": "Councillor M. Scott",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that this Council move into closed session to consider:  one item conc",
+   "resolution_end": "sman appointed under the Ombudsman Act.)",
+   "resolution_len": 683,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Vezeau-Allen",
+     "Councillor M. Scott",
+     "Carried"
+    ]
+   ]
+  },
+  {
+   "item_number": "15",
+   "title": "Adjournment",
+   "mover": "Councillor L. Dufour",
+   "seconder": "Councillor C. Gardi",
+   "outcome": "Carried",
+   "bylaw_numbers": [],
+   "resolution_start": "Resolved that this Council now adjourn.",
+   "resolution_end": "Resolved that this Council now adjourn.",
+   "resolution_len": 39,
+   "vote_results": null,
+   "motions": [
+    [
+     "main",
+     "Councillor L. Dufour",
+     "Councillor C. Gardi",
+     "Carried"
+    ]
+   ]
+  }
+ ]
+}
