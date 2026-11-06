@@ -19,219 +19,67 @@ Usage:
     pip install pdfplumber
     python 2_parse_minutes.py
 
-NOTE: This is a best-effort parser based on the layout of minutes I inspected
-(Sept 22 2025 and similar). Ontario municipal minutes formats are fairly
-standardized but not guaranteed identical across years -- if a meeting's
-layout is meaningfully different (e.g. pre-2023 minutes, or a Committee of
-the Whole session formatted differently), you'll likely need to tweak the
-regexes below. Print statements are left in deliberately so you can see
-what's being skipped/misparsed as you run it against your real corpus.
+The actual parsing lives in minutes_parser.py (layout-aware: item headers
+are recognised by their left-margin position, recorded-vote tables by
+column positions, and every motion within an item is kept). Each item's
+mover/seconder/outcome/resolution_text describe its main motion; all
+motions (amendments, budget amendments, ...) are in item["motions"].
+
+Agenda packages are parsed only up to the agenda's own Adjournment item.
+Minutes of an earlier meeting attached to a package (for adoption) are
+written as their own document -- but only when that meeting's own minutes
+PDF hasn't been downloaded -- so meetings whose minutes were never posted
+separately still get real outcomes.
+
+Check results with audit_minutes.py and tests/ (gold set).
 """
 
 import csv
 import json
 import re
+from multiprocessing import Pool
 from pathlib import Path
 
-import pdfplumber
+from minutes_parser import parse_pdf
 
 PDF_DIR = Path("pdfs")
 PARSED_DIR = Path("parsed")
 PARSED_DIR.mkdir(exist_ok=True)
 
-
-# Item headers look like "7.4 Sackville Road Extension" or "12.1.2 By-law...".
-# Require: (a) the top-level number component is small (real agendas rarely
-# exceed ~20 top-level items -- this rejects false positives like a bare
-# "2024" from a line-wrapped year), and (b) the text after the number starts
-# with a capital letter or "(" -- real headers are titles; continuation text
-# wrapped from the previous line ("2024\nbe received as information.") starts
-# lowercase and gets rejected.
-ITEM_HEADER_RE = re.compile(
-    r"^\s*(\d{1,2}(?:\.\d{1,3}){0,3})\s+([A-Z(].+)$"
-)
-# Strips a trailing page-range like " 27 - 36" that Sault Ste. Marie agendas
-# (not minutes) append to each item title from their table of contents.
-TITLE_PAGE_RANGE_RE = re.compile(r"\s+\d+\s*[-–]\s*\d+\s*$")
-
-BYLAW_RE = re.compile(r"By-?[Ll]aw\s+(\d{4}-\d+)")
-
-# Minutes use "Moved by: Councillor X" / "Seconded by: Councillor Y" (with
-# colon). Agendas use "Mover Councillor X" / "Seconder Councillor Y" (no
-# colon). Support both -- this was the main reason mover/seconder came back
-# null on agenda documents.
-MOVED_BY_RE = re.compile(r"^(?:Moved by|Mover):?\s*(.+)$")
-SECONDED_BY_RE = re.compile(r"^(?:Seconded by|Seconder):?\s*(.+)$")
-OUTCOME_RE = re.compile(r"^\s*(Carried|Defeated)\s*$", re.MULTILINE)
-
-VOTE_HEADER_CELLS = {"for", "against", "conflict", "absent"}
-
-# Every agenda/minutes PDF states its meeting date near the top of page 1,
-# e.g. "Monday, April 7, 2025" or "Tuesday, October 1, 2024". This is more
-# reliable than the filename (which is sometimes missing a date entirely --
-# see download-time "unknown-date_..." files) and lets us double check the
-# filename-derived date too.
-MEETING_DATE_RE = re.compile(
-    r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+"
-    r"(January|February|March|April|May|June|July|August|September|October|November|December)"
-    r"\s+(\d{1,2}),?\s+(\d{4})\b"
-)
-MONTH_NAME_TO_NUM = {
-    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
-    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
-}
+# Minutes recovered from inside a later meeting's agenda package (see
+# minutes_parser.parse_pdf) are written under this synthetic source name.
+EMBEDDED_MARKER = "_minutes_Minutes-attached-to-"
 
 
-# Identifies actual City Council meetings (as opposed to sub-committees like
-# Municipal Heritage Committee, PRAC, etc., which have different membership
-# and aren't part of "council votes"). Filename text is unreliable for this
-# across the corpus (older files are just "2022_11_15_Minutes.pdf" with no
-# descriptive text), but every PDF states its meeting type in a heading on
-# page 1, e.g. "REGULAR MEETING OF CITY COUNCIL" or "Budget Meeting of City
-# Council".
-MEETING_TYPE_RE = re.compile(
-    r"(Inaugural|Regular|Special|Budget)\s+Meeting\s+of\s+City\s+Council", re.IGNORECASE
-)
-
-
-def extract_meeting_type(full_text):
-    """Returns 'Regular' / 'Special' / 'Budget' / 'Inaugural' if this PDF is
-    an actual City Council meeting, else None (a committee or other body)."""
-    m = MEETING_TYPE_RE.search(full_text[:300])
-    if not m:
-        return None
-    return m.group(1).capitalize()
-
-
-def extract_meeting_date(full_text):
-    """Returns 'YYYY-MM-DD' parsed from the first date-like line in the PDF
-    text (searched only near the top, to avoid matching a date mentioned
-    inside some unrelated agenda item further down), or None."""
-    m = MEETING_DATE_RE.search(full_text[:1500])
-    if not m:
-        return None
-    month_name, day, year = m.groups()
-    month = MONTH_NAME_TO_NUM[month_name.lower()]
-    try:
-        return f"{int(year):04d}-{month:02d}-{int(day):02d}"
-    except ValueError:
-        return None
-
-
-def find_vote_tables(pdf):
-    """
-    Scans every page for bordered tables whose header row matches
-    For/Against/Conflict/Absent, and returns a list of
-    (page_number, {councillor_name: vote}) tuples in document order.
-    """
-    results = []
-    for page_num, page in enumerate(pdf.pages, start=1):
-        tables = page.extract_tables()
-        for table in tables:
-            if not table or not table[0]:
-                continue
-            header = [c.strip().lower() if c else "" for c in table[0]]
-            if not VOTE_HEADER_CELLS.issubset(set(header)):
-                continue
-
-            votes = {}
-            for row in table[1:]:
-                if not row or not row[0]:
-                    continue
-                name = row[0].replace("\n", " ").strip()
-                if name.lower().startswith("results"):
-                    continue
-                choice = None
-                for col_idx, col_name in enumerate(header):
-                    if col_idx < len(row) and row[col_idx] and row[col_idx].strip().upper() == "X":
-                        choice = col_name
-                        break
-                if name:
-                    votes[name] = choice
-            results.append((page_num, votes))
-    return results
-
-
-def parse_pdf(path):
-    with pdfplumber.open(path) as pdf:
-        full_text = "\n".join(page.extract_text() or "" for page in pdf.pages)
-        vote_tables = find_vote_tables(pdf)
-
-    lines = full_text.split("\n")
-
-    items = []
-    current = None
-    vote_table_iter = iter(vote_tables)
-    next_vote_table = next(vote_table_iter, None)
-
-    for line in lines:
-        stripped = line.strip()
-
-        header_match = ITEM_HEADER_RE.match(stripped)
-        # Heuristic: treat as a new agenda item header only if it starts with
-        # a number like "7.4" or "12.1.2" followed by real title text (not a
-        # lone number, not something already captured as Moved/Seconded).
-        if header_match and not stripped.lower().startswith(("moved by", "seconded by")):
-            item_num, title = header_match.groups()
-            title = TITLE_PAGE_RANGE_RE.sub("", title).strip()
-            # Filter out false positives: page numbers, dates, etc.
-            if len(title) > 3 and not title.strip().isdigit():
-                if current:
-                    items.append(current)
-                current = {
-                    "item_number": item_num,
-                    "title": title.strip(),
-                    "bylaw_numbers": [],
-                    "mover": None,
-                    "seconder": None,
-                    "outcome": None,
-                    "recorded_vote": None,
-                }
-
-        if current is None:
-            continue
-
-        bylaw_matches = BYLAW_RE.findall(line)
-        for b in bylaw_matches:
-            if b not in current["bylaw_numbers"]:
-                current["bylaw_numbers"].append(b)
-
-        m = MOVED_BY_RE.search(line)
-        if m:
-            current["mover"] = m.group(1).strip()
-
-        s = SECONDED_BY_RE.search(line)
-        if s:
-            current["seconder"] = s.group(1).strip()
-
-        if stripped in ("Carried", "Defeated"):
-            current["outcome"] = stripped
-
-    if current:
-        items.append(current)
-
-    # Attach vote tables to items in order of appearance. This is a heuristic:
-    # we assume vote tables appear in the same order as the items that
-    # triggered them, which held true in the samples inspected, but you
-    # should spot-check a few outputs against the source PDF.
-    non_none_items = [i for i in items if i["outcome"] is not None or i["bylaw_numbers"]]
-    for (page_num, votes), item in zip(vote_tables, non_none_items[-len(vote_tables):] if vote_tables else []):
-        item["recorded_vote"] = votes
-
-    lower_name = path.name.lower()
+def doc_type_from_name(name):
+    lower_name = name.lower()
     if "minutes" in lower_name:
-        doc_type = "minutes"
-    elif "agenda" in lower_name:
-        doc_type = "agenda"
-    else:
-        doc_type = "unknown"
+        return "minutes"
+    if "agenda" in lower_name:
+        return "agenda"
+    return "unknown"
 
+
+def parse_one(pdf_path):
+    """Worker: parses one PDF, returns (pdf_path, main_doc, embedded) or
+    (pdf_path, None, error message)."""
+    try:
+        doc_type = doc_type_from_name(pdf_path.name)
+        main, embedded = parse_pdf(pdf_path, doc_type)
+        return pdf_path, main, embedded
+    except Exception as e:  # keep going -- one bad PDF shouldn't stop the run
+        return pdf_path, None, str(e)
+
+
+def to_record(source_file, doc_type, doc, source_pdf=None):
     return {
-        "source_file": path.name,
+        "source_file": source_file,
+        "source_pdf": source_pdf or source_file,
         "document_type": doc_type,
-        "meeting_date": extract_meeting_date(full_text),
-        "meeting_type": extract_meeting_type(full_text),
-        "items": items,
+        "meeting_date": doc["meeting_date"],
+        "meeting_type": doc["meeting_type"],
+        "pages": doc["pages"],
+        "items": doc["items"],
     }
 
 
@@ -241,34 +89,66 @@ def main():
         print(f"No PDFs found in {PDF_DIR}/. Run 1_download_minutes.py first.")
         return
 
+    # parsed/ is fully derived; clear it so a PDF that was removed, or
+    # minutes once recovered from an agenda package and since published on
+    # their own, never leave a stale JSON behind.
+    for old in PARSED_DIR.glob("*.json"):
+        old.unlink()
+
+    with Pool() as pool:
+        results = pool.map(parse_one, pdfs, chunksize=1)
+
+    records = []
+    embedded_records = []
+    for pdf_path, data, extra in results:
+        print(f"Parsing {pdf_path.name} ...")
+        if data is None:
+            print(f"  ! failed to parse {pdf_path.name}: {extra}")
+            continue
+        doc_type = doc_type_from_name(pdf_path.name)
+        if doc_type == "agenda":
+            print(f"  ! WARNING: {pdf_path.name} is an AGENDA, not minutes -- "
+                  "outcomes and recorded votes will be missing/incomplete.")
+        elif doc_type == "unknown":
+            print(f"  ? {pdf_path.name}: couldn't tell agenda vs minutes from filename, check manually.")
+        records.append(to_record(pdf_path.name, doc_type, data))
+
+        rest = re.sub(r"^[^_]+_[^_]+_", "", pdf_path.stem)
+        for emb in extra:
+            if not emb["meeting_date"]:
+                continue
+            name = f"{emb['meeting_date']}{EMBEDDED_MARKER}{rest}.pdf"
+            print(f"  + found minutes of {emb['meeting_date']} attached (pages {emb['pages'][0]}-{emb['pages'][1]})")
+            embedded_records.append(to_record(name, "minutes", emb, source_pdf=pdf_path.name))
+
+    # Attached minutes are only used for meetings whose own minutes PDF we
+    # don't have; a published minutes PDF always wins.
+    have_minutes = {
+        (r["meeting_date"], r["meeting_type"])
+        for r in records
+        if r["document_type"] == "minutes" and r["meeting_type"]
+    }
+    seen = set()
+    for r in embedded_records:
+        key = (r["meeting_date"], r["meeting_type"])
+        if key in have_minutes or key in seen:
+            continue
+        seen.add(key)
+        records.append(r)
+
     all_rows = []
     all_councillors = set()
-
-    for pdf_path in pdfs:
-        print(f"Parsing {pdf_path.name} ...")
-        try:
-            data = parse_pdf(pdf_path)
-        except Exception as e:
-            print(f"  ! failed to parse {pdf_path.name}: {e}")
-            continue
-
-        if data["document_type"] == "agenda":
-            print(f"  ! WARNING: {pdf_path.name} is an AGENDA, not minutes -- "
-                  "outcomes and recorded votes will be missing/incomplete. "
-                  "Find the real minutes file for this date if you need votes.")
-        elif data["document_type"] == "unknown":
-            print(f"  ? {pdf_path.name}: couldn't tell agenda vs minutes from filename, check manually.")
-
-        out_path = PARSED_DIR / (pdf_path.stem + ".json")
+    for data in records:
+        out_path = PARSED_DIR / (Path(data["source_file"]).stem + ".json")
         with open(out_path, "w") as f:
             json.dump(data, f, indent=2)
 
         # Prefer the date parsed out of the PDF's own text (authoritative) over
         # the filename prefix (which is sometimes "unknown-date").
-        filename_date = pdf_path.name.split("_")[0]
+        filename_date = data["source_file"].split("_")[0]
         meeting_date = data.get("meeting_date") or filename_date
         if data.get("meeting_date") and data["meeting_date"] != filename_date and filename_date != "unknown-date":
-            print(f"  ! filename date ({filename_date}) disagrees with in-PDF date ({data['meeting_date']}); using in-PDF date")
+            print(f"  ! {data['source_file']}: filename date ({filename_date}) disagrees with in-PDF date ({data['meeting_date']}); using in-PDF date")
         for item in data["items"]:
             row = {
                 "meeting_date": meeting_date,
@@ -300,7 +180,8 @@ def main():
         for row in all_rows:
             writer.writerow(row)
 
-    print(f"\nParsed {len(pdfs)} PDFs, {len(all_rows)} agenda items total.")
+    print(f"\nParsed {len(pdfs)} PDFs ({len(records)} documents incl. attached minutes), "
+          f"{len(all_rows)} agenda items total.")
     print("Per-meeting JSON in ./parsed/, rollup in ./votes_rollup.csv")
 
 

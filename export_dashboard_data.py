@@ -16,99 +16,41 @@ motions). For the most recent meetings where minutes haven't been posted
 yet, we fall back to the agenda so the dashboard stays as current as
 possible — those rows are marked "Pending" instead of a real outcome.
 
-Beyond what's in the database, this also re-reads the source PDFs to pull
-the full "Resolved that ..." motion text for each item (the DB/CSV pipeline
-only kept the short agenda title), and computes a simple keyword-based
-"importance" score used to surface a Top 10 per councillor. Both are
-heuristics — see score_item() — meant as a rough first pass to refine later,
-not an authoritative ranking.
+Beyond what's in the database, this also pulls the full "Resolved that
+..." motion text for each item from parsed/*.json (the DB only keeps the
+short agenda title). That text is produced by the same parser that found
+the item's mover/seconder/outcome (minutes_parser.py), so the two can't
+disagree about where one item ends and the next begins. It also computes a
+simple keyword-based "importance" score used to surface a Top 10 per
+councillor -- a heuristic (see score_item()), a rough first pass to refine
+later, not an authoritative ranking.
 """
 
 import json
 import re
 from pathlib import Path
 
-import pdfplumber
-
 from council_data import connect, get_scoped_items, get_scoped_meetings, short_name
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-PDF_DIR = PROJECT_ROOT / "pdfs"
+PARSED_DIR = PROJECT_ROOT / "parsed"
 TERMS_FILE = PROJECT_ROOT / "council_terms.json"
 OUT_FILE = PROJECT_ROOT / "web" / "public" / "data.json"
 
-# Same header/moved/seconded/outcome patterns as 2_parse_minutes.py, reused
-# here only to recover the resolution text between "Seconded by:" and the
-# Carried/Defeated line for items already identified via the database.
-ITEM_HEADER_RE = re.compile(r"^\s*(\d{1,2}(?:\.\d{1,3}){0,3})\s+([A-Z(].+)$")
-# Top-level section dividers like "5. Approve Agenda as Presented" or "7.
-# Communications and Routine Reports ..." (lone number + period, no
-# sub-number). These aren't real agenda items but they do carry their own
-# Moved/Seconded/Resolved/Carried procedural motions -- without treating them
-# as boundaries, that text (and any that follows before the next real N.M
-# item) gets wrongly appended to whatever real item preceded them.
-SECTION_DIVIDER_RE = re.compile(r"^\s*\d{1,2}\.\s+[A-Z(].+$")
-MOVED_BY_RE = re.compile(r"^(?:Moved by|Mover):?\s*(.+)$")
-SECONDED_BY_RE = re.compile(r"^(?:Seconded by|Seconder):?\s*(.+)$")
-OUTCOME_LINE_RE = re.compile(r"^\s*(Carried|Defeated)\s*$")
 
-
-def extract_resolution_texts(pdf_path):
-    """Returns {item_number: resolution_text} for one minutes PDF."""
-    with pdfplumber.open(pdf_path) as pdf:
-        full_text = "\n".join(page.extract_text() or "" for page in pdf.pages)
-    lines = full_text.split("\n")
-
+def load_resolution_texts(source_file):
+    """Returns {item_number: resolution_text} for one meeting, from the
+    parsed JSON that 2_parse_minutes.py wrote for its source document."""
+    path = PARSED_DIR / (Path(source_file).stem + ".json")
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text())
     result = {}
-    current_number = None
-    collecting = False
-    buf = []
-
-    def flush():
-        if current_number and buf:
-            text = " ".join(buf).strip()
-            if text:
-                result[current_number] = text
-
-    for line in lines:
-        stripped = line.strip()
-
-        header_match = ITEM_HEADER_RE.match(stripped)
-        if header_match and not stripped.lower().startswith(("moved by", "seconded by")):
-            item_num, title = header_match.groups()
-            if len(title) > 3 and not title.strip().isdigit():
-                flush()
-                current_number = item_num
-                collecting = False
-                buf = []
-                continue
-
-        if SECTION_DIVIDER_RE.match(stripped):
-            flush()
-            current_number = None
-            collecting = False
-            buf = []
-            continue
-
-        if current_number is None:
-            continue
-
-        if MOVED_BY_RE.match(stripped):
-            collecting = False
-            continue
-        if SECONDED_BY_RE.match(stripped):
-            collecting = True
-            buf = []
-            continue
-        if OUTCOME_LINE_RE.match(stripped):
-            flush()
-            collecting = False
-            continue
-
-        if collecting and stripped:
-            buf.append(stripped)
-
-    flush()
+    for item in data["items"]:
+        text = item.get("resolution_text")
+        # First occurrence wins, matching import_json.py's INSERT OR IGNORE.
+        if text and item["item_number"] not in result:
+            result[item["item_number"]] = text
     return result
 
 
@@ -175,18 +117,10 @@ def main():
     for row in cur.fetchall():
         bylaw_counts[row["agenda_item_id"]] = bylaw_counts.get(row["agenda_item_id"], 0) + 1
 
-    # Pull full resolution text straight from the source PDFs, per meeting.
-    resolution_by_meeting = {}
-    for mid, meeting in meetings.items():
-        pdf_path = PDF_DIR / meeting["source_file"]
-        if not pdf_path.exists():
-            resolution_by_meeting[mid] = {}
-            continue
-        try:
-            resolution_by_meeting[mid] = extract_resolution_texts(pdf_path)
-        except Exception as e:
-            print(f"  ! could not extract full text from {pdf_path.name}: {e}")
-            resolution_by_meeting[mid] = {}
+    # Full resolution text per meeting, from parsed/*.json.
+    resolution_by_meeting = {
+        mid: load_resolution_texts(meeting["source_file"]) for mid, meeting in meetings.items()
+    }
 
     for it in items:
         full_text = resolution_by_meeting.get(it["meeting_id"], {}).get(it["item_number"])
