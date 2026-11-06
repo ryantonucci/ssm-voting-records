@@ -77,6 +77,8 @@ def final_counts(data):
         for person in members(term):
             n = sum(1 for r in person.get("items", []) if not r.get("pending"))
             counts[(term["term"], person["name"])] = n
+            if "voteItems" in person:
+                counts[(term["term"], person["name"] + " (recorded votes)")] = len(person["voteItems"])
     return counts
 
 

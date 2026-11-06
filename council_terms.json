@@ -1,9 +1,10 @@
 {
-  "_comment": "One entry per council term, newest first. Names must match how the minutes write them (\"Councillor X. Surname\") so votes line up. After an election, add the new term at the top. Each term runs from its start date until the next term's start.",
+  "_comment": "One entry per council term, newest first. Names must match how the minutes write them (\"Councillor X. Surname\", \"Mayor X. Surname\") so votes line up. After an election, add the new term at the top. Each term runs from its start date until the next term's start.",
   "terms": [
     {
       "term": "2026–2030",
       "start": "2026-11-16",
+      "mayor": "Mayor M. Shoemaker",
       "councillors": [
         { "ward": 1, "name": "Councillor B. Derochie" },
         { "ward": 1, "name": "Councillor L. Costa" },
@@ -20,6 +21,7 @@
     {
       "term": "2022–2026",
       "start": "2022-11-15",
+      "mayor": "Mayor M. Shoemaker",
       "councillors": [
         { "ward": 1, "name": "Councillor S. Spina" },
         { "ward": 1, "name": "Councillor S. Hollingsworth" },

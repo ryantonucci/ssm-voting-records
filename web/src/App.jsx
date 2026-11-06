@@ -166,11 +166,56 @@ function CouncillorCard({ c, basePath }) {
   )
 }
 
+function MayorCard({ m, basePath }) {
+  const [hover, setHover] = useState(false)
+  return (
+    <Link to={`${basePath}mayor`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <div
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        style={{
+          background: hover ? 'oklch(0.94 0 0)' : 'oklch(0.98 0 0)',
+          padding: '28px 24px',
+          cursor: 'pointer',
+          transition: 'background 0.1s',
+          height: '100%',
+          boxSizing: 'border-box',
+        }}
+      >
+        <div
+          style={{
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
+            color: 'oklch(0.45 0 0)',
+            marginBottom: 8,
+          }}
+        >
+          Mayor
+        </div>
+        <div style={{ fontSize: 18, fontWeight: 700 }}>{m.name}</div>
+        <div style={{ fontSize: 13, color: 'oklch(0.45 0 0)', marginTop: 10 }}>
+          {m.voteCount > 0 ? (
+            <>
+              Chairs meetings &middot; {m.voteCount} recorded votes &middot; {m.votes.for} for &middot;{' '}
+              {m.votes.against} against
+            </>
+          ) : (
+            'Chairs council meetings · no recorded votes yet this term'
+          )}
+        </div>
+      </div>
+    </Link>
+  )
+}
+
 function Home({ term, basePath }) {
   return (
     <section style={{ marginTop: 40 }}>
       <p style={{ fontSize: 16, color: 'oklch(0.4 0 0)', maxWidth: 640, margin: '0 0 32px' }}>
-        Select a councillor to see everything they've moved or seconded, most recent first.
+        Select a councillor to see everything they've moved or seconded, most recent first, or the
+        mayor to see his recorded votes.
       </p>
       <div
         style={{
@@ -181,6 +226,7 @@ function Home({ term, basePath }) {
           border: '1px solid oklch(0.15 0 0)',
         }}
       >
+        {term.mayor && <MayorCard m={term.mayor} basePath={basePath} />}
         {term.councillors.map((c) => (
           <CouncillorCard key={c.name} c={c} basePath={basePath} />
         ))}
@@ -261,7 +307,7 @@ function Row({ item, onSelect }) {
   )
 }
 
-function ItemDetailModal({ item, onClose }) {
+function ItemDetailModal({ item, onClose, roleLabel = 'Role' }) {
   if (!item) return null
   const meetingName = friendlyMeetingName(item.sourceFile)
   return (
@@ -335,7 +381,7 @@ function ItemDetailModal({ item, onClose }) {
         >
           <div>
             <div style={{ color: 'oklch(0.45 0 0)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 4 }}>
-              Role
+              {roleLabel}
             </div>
             <div style={{ fontWeight: 700 }}>{item.role}</div>
           </div>
@@ -469,6 +515,73 @@ function Detail({ term, basePath }) {
   )
 }
 
+function MayorDetail({ term, basePath }) {
+  const [selectedItem, setSelectedItem] = useState(null)
+  const mayor = term.mayor
+  if (!mayor) {
+    return (
+      <section style={{ marginTop: 40 }}>
+        <BackLink to={basePath} />
+        <p style={{ marginTop: 24 }}>No mayor listed for this term.</p>
+      </section>
+    )
+  }
+  // The mayor chairs meetings, so the minutes record his named votes rather
+  // than motions he moved; show both if the minutes ever list him as mover.
+  const rows = [...mayor.voteItems, ...mayor.items].sort((a, b) =>
+    (b.date || '').localeCompare(a.date || ''),
+  )
+  const v = mayor.votes
+  return (
+    <section style={{ marginTop: 40 }}>
+      <BackLink to={basePath} />
+      <h2 style={{ fontSize: 32, fontWeight: 700, margin: '16px 0 4px' }}>{mayor.name}</h2>
+      <p style={{ fontSize: 15, color: 'oklch(0.4 0 0)', margin: '0 0 8px', maxWidth: 640 }}>
+        The mayor chairs council meetings and is not listed as mover or seconder in the minutes
+        {mayor.count > 0 ? ` (except ${mayor.count} item${mayor.count === 1 ? '' : 's'})` : ''}. This page
+        lists every recorded (named) vote he cast.
+      </p>
+      <p style={{ fontSize: 15, color: 'oklch(0.4 0 0)', margin: '0 0 28px' }}>
+        {mayor.voteCount} recorded votes &middot; {v.for} for &middot; {v.against} against &middot;{' '}
+        {v.conflict} conflict declared &middot; {v.absent} absent
+      </p>
+
+      <div style={{ border: '1px solid oklch(0.15 0 0)' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '110px 70px 1fr 90px 110px',
+            gap: 16,
+            padding: '14px 20px',
+            background: 'oklch(0.15 0 0)',
+            color: 'oklch(0.98 0 0)',
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
+          }}
+        >
+          <div>Date</div>
+          <div>Item</div>
+          <div>Description</div>
+          <div>Vote</div>
+          <div>Result</div>
+        </div>
+        {rows.map((item, i) => (
+          <Row key={i} item={item} onSelect={setSelectedItem} />
+        ))}
+        {rows.length === 0 && (
+          <div style={{ padding: '18px 20px', fontSize: 14, color: 'oklch(0.45 0 0)' }}>
+            No recorded votes in the {term.term} term yet.
+          </div>
+        )}
+      </div>
+
+      <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} roleLabel="Vote" />
+    </section>
+  )
+}
+
 // Shared layout for one term's pages. The newest term lives at "/", older
 // ones at "/term/2022-2026", so existing links keep pointing at the current
 // council.
@@ -489,6 +602,7 @@ function TermLayout({ data, isCurrent }) {
       <Header terms={data.terms} term={term} isCurrent={isCurrent} />
       <Routes>
         <Route index element={<Home term={term} basePath={basePath} />} />
+        <Route path="mayor" element={<MayorDetail term={term} basePath={basePath} />} />
         <Route path="councillor/:name" element={<Detail term={term} basePath={basePath} />} />
       </Routes>
     </>

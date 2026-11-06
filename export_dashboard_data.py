@@ -38,20 +38,42 @@ TERMS_FILE = PROJECT_ROOT / "council_terms.json"
 OUT_FILE = PROJECT_ROOT / "web" / "public" / "data.json"
 
 
-def load_resolution_texts(source_file):
-    """Returns {item_number: resolution_text} for one meeting, from the
-    parsed JSON that 2_parse_minutes.py wrote for its source document."""
+def load_parsed_items(source_file):
+    """Returns {item_number: parsed item} for one meeting, from the parsed
+    JSON that 2_parse_minutes.py wrote for its source document. First
+    occurrence wins, matching import_json.py's INSERT OR IGNORE."""
     path = PARSED_DIR / (Path(source_file).stem + ".json")
     if not path.exists():
         return {}
     data = json.loads(path.read_text())
     result = {}
     for item in data["items"]:
-        text = item.get("resolution_text")
-        # First occurrence wins, matching import_json.py's INSERT OR IGNORE.
-        if text and item["item_number"] not in result:
-            result[item["item_number"]] = text
+        result.setdefault(item["item_number"], item)
     return result
+
+
+MOTION_LABELS = {
+    "main": "",
+    "main_as_amended": " (motion as amended)",
+    "amendment": " (amendment)",
+    "additional": " (further motion)",
+    "procedural": " (procedural motion)",
+    "text": "",
+}
+VOTE_ROLES = {"for": "Voted for", "against": "Voted against", "conflict": "Conflict", "absent": "Absent"}
+
+
+def recorded_votes(parsed_items, member):
+    """One entry per recorded (named) vote `member` appears in, across all
+    motions of the given parsed items."""
+    out = []
+    for item in parsed_items:
+        for mo in item.get("motions", []):
+            rv = mo.get("recorded_vote")
+            if not rv or member not in rv["votes"]:
+                continue
+            out.append((item, mo, rv["votes"][member]))
+    return out
 
 
 # Keyword weights used to flag administratively significant items: budget /
@@ -117,13 +139,14 @@ def main():
     for row in cur.fetchall():
         bylaw_counts[row["agenda_item_id"]] = bylaw_counts.get(row["agenda_item_id"], 0) + 1
 
-    # Full resolution text per meeting, from parsed/*.json.
-    resolution_by_meeting = {
-        mid: load_resolution_texts(meeting["source_file"]) for mid, meeting in meetings.items()
+    # Full resolution text (and recorded votes) per meeting, from parsed/*.json.
+    parsed_by_meeting = {
+        mid: load_parsed_items(meeting["source_file"]) for mid, meeting in meetings.items()
     }
 
     for it in items:
-        full_text = resolution_by_meeting.get(it["meeting_id"], {}).get(it["item_number"])
+        parsed = parsed_by_meeting.get(it["meeting_id"], {}).get(it["item_number"]) or {}
+        full_text = parsed.get("resolution_text")
         it["fullText"] = full_text or it["title"]
         it["bylawCount"] = bylaw_counts.get(it["id"], 0)
         it["score"] = score_item(it["title"], it["fullText"], it["outcome"], it["bylawCount"])
@@ -163,6 +186,47 @@ def main():
             "items": rows,
             "top10": top10,
         }
+
+    def build_mayor(full_name, term_items):
+        """The mayor chairs meetings, so the minutes almost never list him as
+        mover or seconder; his record is his recorded (named) votes, plus
+        any moved/seconded rows the minutes do attribute to him."""
+        base = build_councillor(full_name, None, term_items)
+        by_key = {(it["meeting_id"], it["item_number"]): it for it in term_items}
+        rows = []
+        tally = {k: 0 for k in VOTE_ROLES}
+        for mid in sorted({it["meeting_id"] for it in term_items}):
+            if meetings[mid]["document_type"] != "minutes":
+                continue
+            parsed = [p for p in parsed_by_meeting.get(mid, {}).values()
+                      if (mid, p["item_number"]) in by_key]
+            for item, mo, vote in recorded_votes(parsed, full_name):
+                it = by_key[(mid, item["item_number"])]
+                if vote in tally:
+                    tally[vote] += 1
+                rows.append({
+                    "date": it["date"],
+                    "number": it["item_number"],
+                    "description": it["title"] + MOTION_LABELS.get(mo["kind"], ""),
+                    "fullText": mo.get("text") or it["fullText"],
+                    "role": VOTE_ROLES.get(vote, "Not recorded"),
+                    "result": mo.get("outcome") or "—",
+                    "pending": False,
+                    "score": it["score"],
+                    "bylawCount": it["bylawCount"],
+                    "sourceFile": it["sourceFile"],
+                })
+        rows.sort(key=lambda r: (r["date"] or ""), reverse=True)
+        base.update(
+            {
+                "role": "Mayor",
+                "shortName": re.sub(r"^Mayor\s+", "", full_name),
+                "voteCount": len(rows),
+                "votes": tally,
+                "voteItems": rows,
+            }
+        )
+        return base
 
     # Rosters come from council_terms.json, not the minutes: right after an
     # election the new councillors have no recorded votes yet but should still
@@ -209,6 +273,7 @@ def main():
                 "firstMeetingDate": term_dates[0] if term_dates else None,
                 "latestMeetingDate": term_dates[-1] if term_dates else None,
                 "pendingCount": sum(1 for it in term_items if it["pending"]),
+                "mayor": build_mayor(term["mayor"], term_items) if term.get("mayor") else None,
                 "councillors": councillors,
             }
         )
