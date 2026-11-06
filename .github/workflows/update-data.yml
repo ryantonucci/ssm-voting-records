@@ -18,7 +18,9 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # A cold run (no cached PDFs) downloads ~600 MB and parses every meeting,
+    # which took over 45 minutes; warm runs are much shorter.
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
 
@@ -38,12 +40,17 @@ jobs:
           key: pdfs-${{ github.run_id }}
           restore-keys: pdfs-
 
-      - run: ./update_data.sh
+      # Download first and cache the PDFs straight away, so a later failure or
+      # timeout in parsing doesn't throw away the download.
+      - run: python3 1_download_minutes.py
 
       - uses: actions/cache/save@v4
+        if: always()
         with:
           path: pdfs
           key: pdfs-${{ hashFiles('pdfs/**') }}
+
+      - run: ./update_data.sh
 
       - name: Commit data.json if it changed
         run: |
