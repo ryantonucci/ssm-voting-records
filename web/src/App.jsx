@@ -495,6 +495,51 @@ function TermLayout({ data, isCurrent }) {
   )
 }
 
+function Disclaimer() {
+  return (
+    <footer
+      style={{
+        marginTop: 72,
+        paddingTop: 24,
+        borderTop: '1px solid oklch(0.15 0 0)',
+        fontSize: 13,
+        lineHeight: 1.6,
+        color: 'oklch(0.4 0 0)',
+        maxWidth: 720,
+      }}
+    >
+      <div
+        style={{
+          fontWeight: 700,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'oklch(0.15 0 0)',
+          marginBottom: 8,
+        }}
+      >
+        About this data
+      </div>
+      <p style={{ margin: '0 0 8px' }}>
+        Everything here is pulled automatically from the council agendas and minutes published by
+        the{' '}
+        <a href="https://saultstemarie.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>
+          City of Sault Ste. Marie
+        </a>
+        . We do our best to match each motion to the right mover, seconder and outcome, but
+        automated parsing can get things wrong. The official minutes are always the authoritative
+        record. This site is not affiliated with the City.
+      </p>
+      <p style={{ margin: 0 }}>
+        Spotted a mistake? Email{' '}
+        <a href="mailto:tonucci.ryan@gmail.com" style={{ color: 'oklch(0.15 0 0)', fontWeight: 700 }}>
+          tonucci.ryan@gmail.com
+        </a>{' '}
+        with the meeting date and item number, and I'll fix it.
+      </p>
+    </footer>
+  )
+}
+
 function App() {
   const data = useData()
 
@@ -525,6 +570,7 @@ function App() {
           <Route path="/term/:termId/*" element={<TermLayout data={data} />} />
           <Route path="/*" element={<TermLayout data={data} isCurrent />} />
         </Routes>
+        <Disclaimer />
       </div>
     </div>
   )
