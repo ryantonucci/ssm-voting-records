@@ -5,7 +5,7 @@
 // Request:  { message: string, history?: [{ role: "user"|"assistant", content }] }
 // Response: { reply: string, history: [...] }
 
-import { checkLimits } from './_lib/limits.js'
+import { checkLimits, limiterBackend } from './_lib/limits.js'
 import { generate, ModelBusyError } from './_lib/gemini.js'
 import {
   dataSummary,
@@ -170,7 +170,7 @@ export default async function handler(req, res) {
       })
     }
 
-    console.log(JSON.stringify({ chat: 'ok', model: MODEL, ...usage }))
+    console.log(JSON.stringify({ chat: 'ok', model: MODEL, limiter: limiterBackend, ...usage }))
     if (!reply) reply = "Sorry, I couldn't put an answer together for that. Try rephrasing the question."
     return res.status(200).json({
       reply,

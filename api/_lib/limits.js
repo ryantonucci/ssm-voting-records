@@ -14,21 +14,35 @@ const LIMITS = {
 
 const memory = new Map()
 
+// Which counter the last check used; logged with each chat request.
+export let limiterBackend = 'memory'
+
 async function incr(key, ttlSeconds) {
   const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL
   const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN
   if (url && token) {
-    const res = await fetch(`${url}/pipeline`, {
-      method: 'POST',
-      headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
-      body: JSON.stringify([
-        ['INCR', key],
-        ['EXPIRE', key, String(ttlSeconds), 'NX'],
-      ]),
-    })
-    const [first] = await res.json()
-    return Number(first.result)
+    try {
+      const res = await fetch(`${url}/pipeline`, {
+        method: 'POST',
+        headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
+        body: JSON.stringify([
+          ['INCR', key],
+          ['EXPIRE', key, String(ttlSeconds), 'NX'],
+        ]),
+      })
+      const body = await res.json()
+      const count = Number(body?.[0]?.result)
+      if (res.ok && Number.isFinite(count)) {
+        limiterBackend = 'upstash'
+        return count
+      }
+      console.error(JSON.stringify({ limits: 'upstash-bad-response', status: res.status }))
+    } catch (e) {
+      console.error(JSON.stringify({ limits: 'upstash-error', message: e.message }))
+    }
+    // Fall through: counting in memory is weaker, but never silently unlimited.
   }
+  limiterBackend = 'memory'
   const now = Date.now()
   const entry = memory.get(key)
   if (!entry || entry.resetAt <= now) {
