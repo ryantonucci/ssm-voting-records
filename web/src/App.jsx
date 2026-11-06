@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, Link, useParams } from 'react-router-dom'
 import ChatWidget from './ChatWidget'
 
-// The chatbot needs the paid Python backend, so only show it in local dev or
-// when a deployed backend URL is configured.
-const CHAT_ENABLED = import.meta.env.DEV || Boolean(import.meta.env.VITE_CHAT_API_URL)
+// The chat assistant (api/chat.js) is always on in local dev, and in a deployed
+// build only when VITE_ENABLE_CHAT=true is set for that build.
+const CHAT_ENABLED = import.meta.env.DEV || import.meta.env.VITE_ENABLE_CHAT === 'true'
 
 function useData() {
   const [data, setData] = useState(null)
