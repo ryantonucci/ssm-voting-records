@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: "0 11 * * *" # 06:00 Eastern (07:00 during DST)
   workflow_dispatch:
+    inputs:
+      allow_regression:
+        description: "Publish even if final data changed vs. the committed data.json (after reviewing why)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -51,6 +56,37 @@ jobs:
           key: pdfs-${{ hashFiles('pdfs/**') }}
 
       - run: ./update_data.sh
+
+      # Quality gate. Nothing is committed (so the live site keeps the last
+      # good data) unless the new data passes all three checks; a failure
+      # fails the job, which makes GitHub email the owner. All three always
+      # run so the log shows every problem at once:
+      #   - tests/test_gold.py: hand-verified meetings must parse exactly
+      #   - audit_minutes.py: invariant checks; only flags not listed in
+      #     audit_allowlist.json (known quirks of the source PDFs) fail
+      #   - check_regression.py: final meetings may not vanish or change
+      #     versus the committed data.json (re-run manually with
+      #     allow_regression to accept a reviewed, intended change)
+      - name: Check data before publishing
+        env:
+          ALLOW_DATA_REGRESSION: ${{ inputs.allow_regression && '1' || '' }}
+        run: |
+          status=0
+          echo "::group::Gold-set test"; python3 tests/test_gold.py || status=1; echo "::endgroup::"
+          echo "::group::Invariant audit"; python3 audit_minutes.py --json audit_report.json || status=1; echo "::endgroup::"
+          echo "::group::Regression check"; python3 check_regression.py || status=1; echo "::endgroup::"
+          if [ "$status" != 0 ]; then
+            echo "::error::Data checks failed -- data.json was NOT published. See the log groups above and the audit-report artifact."
+          fi
+          exit $status
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report
+          path: audit_report.json
+          if-no-files-found: ignore
 
       - name: Commit data.json if it changed
         run: |
