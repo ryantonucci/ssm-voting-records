@@ -33,7 +33,10 @@ const TOOLS = [
         term: { type: 'string', description: 'Council term, e.g. "2022-2026" or "2026-2030".' },
         date_from: { type: 'string', description: 'Earliest meeting date, YYYY-MM-DD.' },
         date_to: { type: 'string', description: 'Latest meeting date, YYYY-MM-DD.' },
-        result: { type: 'string', enum: ['Carried', 'Defeated', 'Pending'] },
+        result: {
+          type: 'string',
+          enum: ['Carried', 'Defeated', 'Pending', 'Postponed', 'Deferred', 'Withdrawn', 'Not Dealt With'],
+        },
         limit: { type: 'integer', description: 'Max results, default 10, max 25.' },
       },
     },
@@ -86,7 +89,7 @@ function systemPrompt() {
   const s = dataSummary()
   return `You answer questions about Sault Ste. Marie (Ontario) City Council motions for a public website. Today is ${new Date().toISOString().slice(0, 10)}.
 
-Data available: council terms ${s.terms.join('; ')}. Most recent motion on file: ${s.latestMotion}. Current council: ${s.currentCouncil.join(', ')}. The data comes from the City's published agendas and minutes and only covers councillors (not the mayor), and only who moved and seconded each motion and whether it carried. It does not include how each councillor voted except as mover/seconder, and has nothing on meetings outside these dates.
+Data available: council terms ${s.terms.join('; ')}. Most recent motion on file: ${s.latestMotion}. Current council: ${s.currentCouncil.join(', ')}. The data comes from the City's published agendas and minutes: who moved and seconded each motion and its outcome (Carried, Defeated, Postponed, Deferred, Withdrawn, Not Dealt With, or Pending). Your tools only cover councillors. Mayor Matthew Shoemaker chairs meetings and is never recorded as mover or seconder; his recorded votes are on the Mayor page of this site, which your tools can't read, so point people there. Individual councillors' votes aren't in your tools either, except as mover/seconder. There is nothing on meetings outside these dates.
 
 How to answer:
 - Look facts up with the tools before answering. Never state a motion, date, name, count or outcome you did not get from a tool result.
