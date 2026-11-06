@@ -35,18 +35,27 @@ debugging:
   at the bottom of `1_download_minutes.py` (crawling the human-facing agenda
   page instead).
 
-- **The parser** assumes minutes follow the layout I saw in the Sept 2025
-  file: numbered item headers ("12.1.2 By-law..."), "Moved by:" / "Seconded
-  by:" lines, a bare "Carried"/"Defeated" line, and — when a recorded vote
-  happens — a bordered table with a For/Against/Conflict/Absent header row.
-  Older minutes (pre-2023ish) or committee-of-the-whole sections may be
-  formatted slightly differently. The script prints its progress as it goes
-  so you can see which meetings parsed cleanly and which didn't.
+- **The parser** (`minutes_parser.py`, used by `2_parse_minutes.py`) is
+  layout-aware: item headers are found by their left-margin position and
+  heading font, recorded-vote tables by column positions, and every motion in
+  an item is kept (the item's mover/seconder/outcome are its main motion's).
+  Agenda packages are parsed only up to the agenda's Adjournment; minutes of
+  an earlier meeting attached to a package are used when that meeting has no
+  minutes PDF of its own.
 
-- **Vote-table-to-item matching** is a heuristic (matches vote tables to
-  items in document order). It worked correctly on the sample I inspected,
-  but spot-check a handful of outputs against the source PDF before trusting
-  the full rollup, especially for meetings with multiple recorded votes.
+## Checking the data
+
+- `python3 tests/test_gold.py` -- 11 hand-verified meetings (541 items) must
+  parse exactly. After an intended parser change, regenerate a fixture with
+  `python3 tests/make_gold.py <doc>` and review its diff against the PDF.
+- `python3 audit_minutes.py` -- invariant checks over every council document;
+  only flags not in `audit_allowlist.json` (verified quirks of the source
+  PDFs, each with a reason) fail.
+- `python3 check_regression.py` -- compares `web/public/data.json` with the
+  committed version; final meetings may not disappear or change.
+
+The daily GitHub Action runs all three after `./update_data.sh` and only
+commits `data.json` if they pass.
 
 ## What you'll get either way
 
