@@ -19,7 +19,7 @@ GOLD_DOCS = [
     "2025-01-13_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Jan13_2025-English",  # indented 4-level sub-items
     "2025-09-22_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Sep22_2025-English",  # consent agenda, many by-laws, split vote tables
     "2026-03-23_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Mar23_2026-English",  # unlabelled restated motion after amendment
-    "2026-07-13_minutes_Minutes-attached-to-Merged-Agenda-Package-Regular-Council-Meeting_Aug10_2026",  # minutes recovered from an agenda package
+    "2026-07-13_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Jul13_2026-English",  # official minutes that replaced a draft recovered from an agenda package
     "2026-11-09_agenda_Agenda-Package-Regular-Council-Meeting_Nov09_2026",  # current agenda format (no movers yet)
 ]
 

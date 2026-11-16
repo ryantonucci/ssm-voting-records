@@ -114,15 +114,15 @@
       "reason": "Genuine: notice of motion, no seconder or vote recorded."
     },
     {
-      "key": "MOVER_NO_OUTCOME|2026-04-13_minutes_Minutes-attached-to-Merged-Agenda-Package-Regular-Council-Meeting_May04_2026.pdf|9.2",
+      "key": "MOVER_NO_OUTCOME|2026-04-13_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Apr13_2026-English.pdf|9.2",
       "reason": "Genuine: motion deferred to the May 25, 2026 agenda at the mover's request; no vote."
     },
     {
-      "key": "MOVER_NO_OUTCOME|2026-05-04_minutes_Minutes-attached-to-Agenda-Package-Regular-Council-Meeting_May25_2026-Final.pdf|7.7",
+      "key": "MOVER_NO_OUTCOME|2026-05-04_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_May04_2026-English.pdf|7.7",
       "reason": "Genuine: no outcome line printed for this motion (followed by MYAC comments)."
     },
     {
-      "key": "MOVER_NO_OUTCOME|2026-08-31_minutes_Minutes-attached-to-Merged-Agenda-Package-Regular-Council-Meeting_Sep21_2026.pdf|9.4",
+      "key": "MOVER_NO_OUTCOME|2026-08-31_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Aug31_2026-English.pdf|9.4",
       "reason": "Genuine: motion to be dealt with September 21, 2026; no vote."
     },
     {
@@ -132,6 +132,10 @@
     {
       "key": "OUTCOME_NO_MOVER|unknown-date_minutes_02_21_23_Minutes.pdf|12.1.10",
       "reason": "Genuine: no Moved by / Seconded by lines for this by-law in the minutes."
+    },
+    {
+      "key": "MOVER_NO_OUTCOME|2026-09-21_minutes_Post-Meeting-Minutes-Regular-Council-Meeting_Sep21_2026-English.pdf|14",
+      "reason": "Genuine: closed-session motion printed at the top of the minutes without a Carried line."
     }
   ]
 }
