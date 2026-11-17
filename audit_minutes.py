@@ -8,10 +8,13 @@ landing on a sub-item, page furniture inside resolution text, by-law
 numbers attached to the wrong item, impossible names, vote tables that
 don't add up -- so only those need checking against the PDF.
 
-Each flag has a stable key "CODE|source_file|item_number". Flags that were
-checked and turned out to be genuine quirks of the source PDF are listed,
-with the reason, in audit_allowlist.json; only flags NOT in that list count
-as failures.
+Each flag has a stable key "CODE|meeting_date|meeting_type|document_type|item"
+(e.g. "MOVER_NO_OUTCOME|2026-04-13|Regular|minutes|9.2"). It names the
+meeting, not the PDF, so it survives the city renaming or replacing a file
+(draft minutes swapped for official ones, say). Flags that were checked and
+turned out to be genuine quirks of the source PDF are listed, with the
+reason, in audit_allowlist.json; only flags NOT in that list count as
+failures.
 
 Usage:
     python3 audit_minutes.py                 # report, exit 1 on new errors
@@ -100,9 +103,17 @@ def roster_for(terms, date):
     return set(names)
 
 
+def doc_key(doc):
+    """Which meeting document this is, independent of the PDF's file name."""
+    if doc.get("meeting_date") and doc.get("meeting_type"):
+        return f"{doc['meeting_date']}|{doc['meeting_type']}|{doc['document_type']}"
+    return doc["source_file"]
+
+
 def audit_doc(doc, terms):
     flags = []
     src = doc["source_file"]
+    ident = doc_key(doc)
     items = doc["items"]
     is_minutes = doc["document_type"] == "minutes"
     roster = roster_for(terms, doc.get("meeting_date"))
@@ -112,7 +123,7 @@ def audit_doc(doc, terms):
         num = item["item_number"] if item else "-"
         flags.append(
             {
-                "key": f"{code}|{src}|{num}",
+                "key": f"{code}|{ident}|{num}",
                 "code": code,
                 "severity": SEVERITY[code],
                 "source_file": src,
@@ -254,7 +265,7 @@ def audit_pairs(docs):
                 src = group["minutes"]["source_file"]
                 flags.append(
                     {
-                        "key": f"AGENDA_MINUTES_TITLE|{src}|{it['item_number']}",
+                        "key": f"AGENDA_MINUTES_TITLE|{doc_key(group['minutes'])}|{it['item_number']}",
                         "code": "AGENDA_MINUTES_TITLE",
                         "severity": SEVERITY["AGENDA_MINUTES_TITLE"],
                         "source_file": src,

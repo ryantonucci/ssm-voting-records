@@ -27,6 +27,8 @@ def main():
         out = {
             "source_file": data["source_file"],
             "meeting_date": data["meeting_date"],
+            "meeting_type": data["meeting_type"],
+            "document_type": data["document_type"],
             "items": [summarize(it) for it in data["items"]],
         }
         (GOLD_DIR / f"{stem}.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")

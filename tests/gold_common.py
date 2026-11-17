@@ -54,3 +54,27 @@ def summarize(item):
 def load_parsed(stem):
     path = PARSED_DIR / f"{stem}.json"
     return json.loads(path.read_text()) if path.exists() else None
+
+
+def same_meeting(a, b):
+    return all(a.get(k) == b.get(k) for k in ("meeting_date", "meeting_type", "document_type"))
+
+
+def find_parsed(gold):
+    """The parsed document a gold fixture checks: its own PDF if that is still
+    there, else the one document for the same meeting (the city sometimes
+    renames a PDF or swaps draft minutes for official ones). Returns
+    (doc, note); doc is None when there is no single match."""
+    stem = Path(gold["source_file"]).stem
+    data = load_parsed(stem)
+    if data is not None:
+        return data, None
+    if not gold.get("meeting_type"):
+        return None, f"parsed/{stem}.json missing (meeting disappeared?)"
+    docs = (json.loads(f.read_text()) for f in sorted(PARSED_DIR.glob("*.json")))
+    matches = [d for d in docs if same_meeting(d, gold)]
+    if len(matches) == 1:
+        return matches[0], f"{stem}.pdf is gone; checking {matches[0]['source_file']} (same meeting) instead"
+    if not matches:
+        return None, f"no parsed document for {gold['meeting_date']} {gold['meeting_type']} {gold['document_type']} (meeting disappeared?)"
+    return None, f"{stem}.pdf is gone and {len(matches)} documents match its meeting: " + ", ".join(m["source_file"] for m in matches)

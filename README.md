@@ -47,10 +47,13 @@ debugging:
 
 - `python3 tests/test_gold.py` -- 11 hand-verified meetings (541 items) must
   parse exactly. After an intended parser change, regenerate a fixture with
-  `python3 tests/make_gold.py <doc>` and review its diff against the PDF.
+  `python3 tests/make_gold.py <doc>` and review its diff against the PDF. If
+  a gold meeting's PDF is renamed or replaced (draft minutes swapped for
+  official ones), the test checks the replacement for the same meeting.
 - `python3 audit_minutes.py` -- invariant checks over every council document;
   only flags not in `audit_allowlist.json` (verified quirks of the source
-  PDFs, each with a reason) fail.
+  PDFs, each with a reason) fail. Entries are keyed by meeting date, type,
+  document and item number, not file name, so renamed PDFs don't trip it.
 - `python3 check_regression.py` -- compares `web/public/data.json` with the
   committed version; final meetings may not disappear or change.
 

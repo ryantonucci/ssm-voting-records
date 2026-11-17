@@ -16,15 +16,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from gold_common import GOLD_DIR, GOLD_DOCS, load_parsed, summarize  # noqa: E402
+from gold_common import GOLD_DIR, GOLD_DOCS, find_parsed, summarize  # noqa: E402
 
 
-def compare(stem):
+def compare(stem, notes=None):
     """Returns a list of human-readable mismatches for one gold meeting."""
     gold = json.loads((GOLD_DIR / f"{stem}.json").read_text())
-    data = load_parsed(stem)
+    data, note = find_parsed(gold)
     if data is None:
-        return [f"{stem}: parsed/{stem}.json missing (meeting disappeared?)"]
+        return [f"{stem}: {note}"]
+    if note and notes is not None:
+        notes.append(note)
     problems = []
     got = {it["item_number"]: summarize(it) for it in data["items"]}
     want = {it["item_number"]: it for it in gold["items"]}
@@ -51,12 +53,15 @@ def test_gold_set():
 def main():
     total = checked = 0
     problems = []
+    notes = []
     for stem in GOLD_DOCS:
         gold = json.loads((GOLD_DIR / f"{stem}.json").read_text())
         total += len(gold["items"])
-        p = compare(stem)
+        p = compare(stem, notes)
         problems += p
         checked += 1
+    for n in notes:
+        print("  note: " + n)
     for p in problems[:100]:
         print("  " + p)
     print(f"Gold set: {checked} meetings, {total} items, {len(problems)} mismatches.")
