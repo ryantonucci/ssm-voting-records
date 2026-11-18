@@ -125,7 +125,7 @@ function CouncillorCard({ c, basePath }) {
   return (
     <Link
       to={`${basePath}councillor/${encodeURIComponent(c.shortName)}`}
-      style={{ textDecoration: 'none', color: 'inherit' }}
+      style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
     >
       <div
         onMouseEnter={() => setHover(true)}
@@ -135,6 +135,8 @@ function CouncillorCard({ c, basePath }) {
           padding: '28px 24px',
           cursor: 'pointer',
           transition: 'background 0.1s',
+          height: '100%',
+          boxSizing: 'border-box',
         }}
       >
         {c.ward != null && (
@@ -169,7 +171,7 @@ function CouncillorCard({ c, basePath }) {
 function MayorCard({ m, basePath }) {
   const [hover, setHover] = useState(false)
   return (
-    <Link to={`${basePath}mayor`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to={`${basePath}mayor`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -210,7 +212,13 @@ function MayorCard({ m, basePath }) {
   )
 }
 
+const CARD_COLUMNS = 3
+
 function Home({ term, basePath }) {
+  const cards = term.councillors.length + (term.mayor ? 1 : 0)
+  // Blank cells finish the last row, so the grid's dark background (its
+  // dividing lines) doesn't show as a black block.
+  const blanks = (CARD_COLUMNS - (cards % CARD_COLUMNS)) % CARD_COLUMNS
   return (
     <section style={{ marginTop: 40 }}>
       <p style={{ fontSize: 16, color: 'oklch(0.4 0 0)', maxWidth: 640, margin: '0 0 32px' }}>
@@ -220,7 +228,7 @@ function Home({ term, basePath }) {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: `repeat(${CARD_COLUMNS}, 1fr)`,
           gap: 1,
           background: 'oklch(0.15 0 0)',
           border: '1px solid oklch(0.15 0 0)',
@@ -229,6 +237,9 @@ function Home({ term, basePath }) {
         {term.mayor && <MayorCard m={term.mayor} basePath={basePath} />}
         {term.councillors.map((c) => (
           <CouncillorCard key={c.name} c={c} basePath={basePath} />
+        ))}
+        {Array.from({ length: blanks }, (_, i) => (
+          <div key={`blank-${i}`} style={{ background: 'oklch(0.98 0 0)' }} />
         ))}
       </div>
       {CHAT_ENABLED && <ChatWidget />}
