@@ -17,3 +17,131 @@ body {
 a {
   color: inherit;
 }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Layout that changes on phones. Everything else is inline in App.jsx. */
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px 96px;
+}
+
+.site-header {
+  padding: 48px 0 32px;
+}
+
+.site-count {
+  text-align: right;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+}
+
+.member-card {
+  padding: 28px 24px;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 110px 70px 1fr 90px 110px;
+  gap: 16px;
+  padding: 18px 20px;
+  align-items: start;
+}
+
+.item-head {
+  padding: 14px 20px;
+}
+
+.modal-overlay {
+  padding: 64px 24px;
+}
+
+.modal-card {
+  padding: 32px;
+}
+
+.chat-input {
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 0 16px 64px;
+  }
+
+  .site-header {
+    padding: 28px 0 24px;
+  }
+
+  .site-count {
+    text-align: left;
+  }
+
+  .member-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member-blank {
+    display: none;
+  }
+
+  .member-card {
+    padding: 18px 16px;
+  }
+
+  /* Each row becomes a small card: date and item number, the description,
+     then role and result. */
+  .item-head {
+    display: none;
+  }
+
+  .item-row {
+    /* Fixed, so numbers line up row to row; fits "VOTED AGAINST". */
+    grid-template-columns: 110px 1fr;
+    grid-template-areas:
+      'date num'
+      'desc desc'
+      'role result';
+    gap: 6px 12px;
+    padding: 14px 16px;
+  }
+
+  .item-row .c-date {
+    grid-area: date;
+  }
+
+  .item-row .c-num {
+    grid-area: num;
+  }
+
+  .item-row .c-desc {
+    grid-area: desc;
+  }
+
+  .item-row .c-role {
+    grid-area: role;
+  }
+
+  .item-row .c-result {
+    grid-area: result;
+  }
+
+  .modal-overlay {
+    padding: 16px;
+  }
+
+  .modal-card {
+    padding: 20px;
+  }
+
+  /* Under 16px, iOS Safari zooms the page when the field is focused. */
+  .chat-input {
+    font-size: 16px;
+  }
+}

@@ -117,9 +117,11 @@ export default function ChatWidget() {
               if (e.key === 'Enter') send()
             }}
             placeholder="Ask a question…"
+            className="chat-input"
             style={{
               flex: 1,
-              fontSize: 14,
+              minWidth: 0,
+              borderRadius: 0,
               padding: '10px 12px',
               border: '1px solid oklch(0.9 0 0)',
               fontFamily: 'inherit',

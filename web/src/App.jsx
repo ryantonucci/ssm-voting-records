@@ -65,7 +65,7 @@ function TermSwitcher({ terms, active }) {
 
 function Header({ terms, term, isCurrent }) {
   return (
-    <header style={{ padding: '48px 0 32px', borderBottom: '1px solid oklch(0.15 0 0)' }}>
+    <header className="site-header" style={{ borderBottom: '1px solid oklch(0.15 0 0)' }}>
       <div
         style={{
           display: 'flex',
@@ -89,7 +89,7 @@ function Header({ terms, term, isCurrent }) {
           </div>
           <h1 style={{ fontSize: 34, fontWeight: 700, margin: 0 }}>Council Members</h1>
         </Link>
-        <div style={{ fontSize: 13, color: 'oklch(0.45 0 0)', textAlign: 'right' }}>
+        <div className="site-count" style={{ fontSize: 13, color: 'oklch(0.45 0 0)' }}>
           {term.meetingCount} meetings on file &middot; {term.itemCount} items indexed
         </div>
       </div>
@@ -97,8 +97,9 @@ function Header({ terms, term, isCurrent }) {
       <p style={{ fontSize: 13, color: 'oklch(0.45 0 0)', margin: '16px 0 0' }}>
         {term.firstMeetingDate ? (
           <>
-            The {term.term} council: meetings from {term.firstMeetingDate} &ndash;{' '}
-            {term.latestMeetingDate}.
+            The {term.term} council: meetings from{' '}
+            <span style={{ whiteSpace: 'nowrap' }}>{term.firstMeetingDate}</span> &ndash;{' '}
+            <span style={{ whiteSpace: 'nowrap' }}>{term.latestMeetingDate}</span>.
           </>
         ) : (
           <>
@@ -128,11 +129,11 @@ function CouncillorCard({ c, basePath }) {
       style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
     >
       <div
+        className="member-card"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{
           background: hover ? 'oklch(0.94 0 0)' : 'oklch(0.98 0 0)',
-          padding: '28px 24px',
           cursor: 'pointer',
           transition: 'background 0.1s',
           height: '100%',
@@ -173,11 +174,11 @@ function MayorCard({ m, basePath }) {
   return (
     <Link to={`${basePath}mayor`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
       <div
+        className="member-card"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{
           background: hover ? 'oklch(0.94 0 0)' : 'oklch(0.98 0 0)',
-          padding: '28px 24px',
           cursor: 'pointer',
           transition: 'background 0.1s',
           height: '100%',
@@ -217,7 +218,8 @@ const CARD_COLUMNS = 3
 function Home({ term, basePath }) {
   const cards = term.councillors.length + (term.mayor ? 1 : 0)
   // Blank cells finish the last row, so the grid's dark background (its
-  // dividing lines) doesn't show as a black block.
+  // dividing lines) doesn't show as a black block. Phones get one column
+  // and hide them.
   const blanks = (CARD_COLUMNS - (cards % CARD_COLUMNS)) % CARD_COLUMNS
   return (
     <section style={{ marginTop: 40 }}>
@@ -226,9 +228,9 @@ function Home({ term, basePath }) {
         mayor to see his recorded votes.
       </p>
       <div
+        className="member-grid"
         style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${CARD_COLUMNS}, 1fr)`,
+          '--cols': CARD_COLUMNS,
           gap: 1,
           background: 'oklch(0.15 0 0)',
           border: '1px solid oklch(0.15 0 0)',
@@ -239,7 +241,7 @@ function Home({ term, basePath }) {
           <CouncillorCard key={c.name} c={c} basePath={basePath} />
         ))}
         {Array.from({ length: blanks }, (_, i) => (
-          <div key={`blank-${i}`} style={{ background: 'oklch(0.98 0 0)' }} />
+          <div key={`blank-${i}`} className="member-blank" style={{ background: 'oklch(0.98 0 0)' }} />
         ))}
       </div>
       {CHAT_ENABLED && <ChatWidget />}
@@ -270,28 +272,25 @@ function Row({ item, onSelect }) {
   const [hover, setHover] = useState(false)
   return (
     <div
+      className="item-row"
       onClick={() => onSelect(item)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        display: 'grid',
-        gridTemplateColumns: '110px 70px 1fr 90px 110px',
-        gap: 16,
-        padding: '18px 20px',
         borderBottom: '1px solid oklch(0.9 0 0)',
-        alignItems: 'start',
         cursor: 'pointer',
         background: hover ? 'oklch(0.94 0 0)' : 'transparent',
       }}
     >
-      <div style={{ fontSize: 13, color: 'oklch(0.4 0 0)', fontVariantNumeric: 'tabular-nums' }}>
+      <div className="c-date" style={{ fontSize: 13, color: 'oklch(0.4 0 0)', fontVariantNumeric: 'tabular-nums' }}>
         {item.date}
       </div>
-      <div style={{ fontSize: 14, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
+      <div className="c-num" style={{ fontSize: 14, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
         {item.number}
       </div>
-      <div style={{ fontSize: 14, lineHeight: 1.4 }}>{item.description}</div>
+      <div className="c-desc" style={{ fontSize: 14, lineHeight: 1.4 }}>{item.description}</div>
       <div
+        className="c-role"
         style={{
           fontSize: 12,
           fontWeight: 700,
@@ -303,6 +302,7 @@ function Row({ item, onSelect }) {
         {item.role}
       </div>
       <div
+        className="c-result"
         style={{
           fontSize: 12,
           fontWeight: 700,
@@ -323,6 +323,7 @@ function ItemDetailModal({ item, onClose, roleLabel = 'Role' }) {
   const meetingName = friendlyMeetingName(item.sourceFile)
   return (
     <div
+      className="modal-overlay"
       onClick={onClose}
       style={{
         position: 'fixed',
@@ -331,18 +332,19 @@ function ItemDetailModal({ item, onClose, roleLabel = 'Role' }) {
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        padding: '64px 24px',
+        overflowY: 'auto',
+        overscrollBehavior: 'contain',
         zIndex: 10,
       }}
     >
       <div
+        className="modal-card"
         onClick={(e) => e.stopPropagation()}
         style={{
           background: 'oklch(0.98 0 0)',
           border: '1px solid oklch(0.15 0 0)',
           maxWidth: 640,
           width: '100%',
-          padding: '32px',
         }}
       >
         <div
@@ -364,7 +366,7 @@ function ItemDetailModal({ item, onClose, roleLabel = 'Role' }) {
           </div>
           <div
             onClick={onClose}
-            style={{ fontSize: 13, color: 'oklch(0.45 0 0)', cursor: 'pointer' }}
+            style={{ fontSize: 13, color: 'oklch(0.45 0 0)', cursor: 'pointer', padding: 10, margin: -10 }}
           >
             Close &times;
           </div>
@@ -492,11 +494,8 @@ function Detail({ term, basePath }) {
 
       <div style={{ border: '1px solid oklch(0.15 0 0)' }}>
         <div
+          className="item-row item-head"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '110px 70px 1fr 90px 110px',
-            gap: 16,
-            padding: '14px 20px',
             background: 'oklch(0.15 0 0)',
             color: 'oklch(0.98 0 0)',
             fontSize: 12,
@@ -559,11 +558,8 @@ function MayorDetail({ term, basePath }) {
 
       <div style={{ border: '1px solid oklch(0.15 0 0)' }}>
         <div
+          className="item-row item-head"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '110px 70px 1fr 90px 110px',
-            gap: 16,
-            padding: '14px 20px',
             background: 'oklch(0.15 0 0)',
             color: 'oklch(0.98 0 0)',
             fontSize: 12,
@@ -690,7 +686,7 @@ function App() {
         minHeight: '100vh',
       }}
     >
-      <div style={{ maxWidth: 1120, margin: '0 auto', padding: '0 32px 96px' }}>
+      <div className="page">
         <Routes>
           <Route path="/term/:termId/*" element={<TermLayout data={data} />} />
           <Route path="/*" element={<TermLayout data={data} isCurrent />} />
