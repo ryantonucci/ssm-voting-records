@@ -252,6 +252,14 @@ def main():
             for mid in term_meeting_ids
             if meetings[mid]["meeting_date"]
         )
+        # The "still pending" notice is about the latest meetings, whose
+        # minutes are on their way. Older agenda-only meetings (the city never
+        # posted minutes for a few) stay marked pending item by item, but
+        # don't count here, so the notice goes away once the newest minutes
+        # are posted.
+        last_minutes = max(
+            (it["date"] for it in term_items if it["date"] and not it["pending"]), default=""
+        )
 
         ward_by_name = {c["name"]: c["ward"] for c in term["councillors"]}
         names = set(ward_by_name) | {
@@ -272,7 +280,9 @@ def main():
                 "itemCount": len(term_items),
                 "firstMeetingDate": term_dates[0] if term_dates else None,
                 "latestMeetingDate": term_dates[-1] if term_dates else None,
-                "pendingCount": sum(1 for it in term_items if it["pending"]),
+                "pendingCount": sum(
+                    1 for it in term_items if it["pending"] and (it["date"] or "") > last_minutes
+                ),
                 "mayor": build_mayor(term["mayor"], term_items) if term.get("mayor") else None,
                 "councillors": councillors,
             }
